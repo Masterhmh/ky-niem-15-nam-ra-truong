@@ -8,16 +8,22 @@ Thiệp mời kỷ niệm 15 năm ngày ra trường của cựu học sinh Trư
 - Địa điểm: Trường THPT Số 1 Mường Khương
 - Trang chính: `index.html`
 
+## Phong cách bản này
+
+- Sang trọng: nền kem, chữ xanh navy đậm, điểm vàng, khung viền kép, chữ serif lớn.
+- Icon dạng flat: icon SVG nét mảnh, không dùng emoji, không dùng hình ảnh.
+- Theo yêu cầu ngày 2026-10-22: thiệp không cần hình ảnh ở bản này, hình ảnh sẽ bổ sung sau nếu Ban tổ chức chốt.
+
 ## Tính năng
 
 - Phong bì mở thiệp, hiệu ứng hiện dần khi cuộn trang.
 - Đếm ngược trực tiếp tới 9 giờ 00 ngày 01/01/2027.
 - Nút chỉ đường tới trường và nút tải file lịch (.ics).
-- Khu vực xác nhận tham dự và khu vực ảnh kỷ niệm.
+- Khu vực xác nhận tham dự.
 
 ## Cần cập nhật trước khi gửi thiệp
 
-1. Thay 3 khung ảnh placeholder trong mục Ký Ức bằng ảnh thật của lớp và của trường.
+1. Hình ảnh sẽ bổ sung sau theo yêu cầu (bản này chưa dùng hình ảnh).
 2. Chốt hình thức tổng hợp xác nhận tham dự của Ban tổ chức (hiện tại nút xác nhận chỉ lưu trên thiết bị người bấm).
 3. Bổ sung chương trình chi tiết trong ngày nếu Ban tổ chức đã chốt (hiện tại thiệp chỉ ghi thời gian tập trung chính thức là 9 giờ 00).
 
