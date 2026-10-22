@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kỷ Niệm 15 Năm Ngày Ra Trường — 2012 - 2027 | Trường THPT Số 1 Mường Khương</title>
-<meta name="description" content="Thiệp mời kỷ niệm 15 năm ngày ra trường 2012 - 2027. Thời gian: 9 giờ 00, Thứ Sáu, ngày 01/01/2027 tại Trường THPT Số 1 Mường Khương.">
+<title>Kỷ Niệm 15 Năm Ngày Ra Trường — Lớp 12A1, 2012 - 2027 | Trường THPT Số 1 Mường Khương</title>
+<meta name="description" content="Thiệp mời kỷ niệm 15 năm ngày ra trường của Lớp 12A1, 2012 - 2027. Thời gian: 9 giờ 00, Thứ Sáu, ngày 01/01/2027 tại Trường THPT Số 1 Mường Khương.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,900;1,500&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -20,53 +20,60 @@
   body.opened{overflow:auto}
   a{color:inherit}
   .serif{font-family:"Playfair Display",Georgia,serif}
-  .wrap{max-width:920px;margin:0 auto;padding:0 22px}
-  .gold-text{background:linear-gradient(105deg,#8C6D2E,#C5A059 32%,#F0D48A 52%,#C5A059 72%,#8C6D2E);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .wrap{max-width:920px;margin:0 auto;padding:0 22px;position:relative}
+  .gold-text{background:linear-gradient(105deg,#8C6D2E,#C5A059 32%,#F0D48A 52%,#C5A059 72%,#8C6D2E);background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s ease-in-out infinite}
+  @keyframes shine{0%,100%{background-position:0% center}50%{background-position:100% center}}
   .small{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-dark);font-weight:600}
   .icon{width:34px;height:34px;stroke:var(--gold-dark);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none}
-  .icon.light{stroke:var(--gold-light)}
+  .spark{position:absolute;width:5px;height:5px;border-radius:50%;background:var(--gold-light);opacity:0;box-shadow:0 0 12px 2px rgba(230,201,135,.7);animation:sparkFloat 7s ease-in-out infinite;pointer-events:none}
+  @keyframes sparkFloat{0%,100%{opacity:0;transform:translateY(12px) scale(.7)}35%{opacity:.9}70%{opacity:.4}100%{opacity:0;transform:translateY(-34px) scale(1.1)}}
 
-  /* Envelope */
-  #envelope{position:fixed;inset:0;z-index:50;background:linear-gradient(180deg,#0E1B33,#1B2F55 55%,#0E1B33);display:flex;align-items:center;justify-content:center;padding:24px;transition:opacity .9s ease,visibility .9s}
+  #envelope{position:fixed;inset:0;z-index:50;background:radial-gradient(800px 500px at 50% 0%,rgba(230,201,135,.22),transparent 60%),linear-gradient(180deg,#0E1B33,#1B2F55 55%,#0E1B33);display:flex;align-items:center;justify-content:center;padding:24px;transition:opacity .9s ease,visibility .9s}
   #envelope.hide{opacity:0;visibility:hidden;pointer-events:none}
-  .env-card{width:min(580px,100%);background:var(--paper);padding:52px 36px 40px;text-align:center;position:relative;box-shadow:0 40px 90px rgba(0,0,0,.45)}
+  #envelope.hide .env-card{transform:translateY(-24px) scale(.97)}
+  .env-card{width:min(580px,100%);background:var(--paper);padding:52px 36px 40px;text-align:center;position:relative;box-shadow:0 40px 90px rgba(0,0,0,.45);transition:transform .9s ease}
   .env-card:before{content:"";position:absolute;inset:12px;border:1px solid var(--line);pointer-events:none}
   .env-card:after{content:"";position:absolute;inset:16px;border:1px solid rgba(197,160,89,.25);pointer-events:none}
   .seal{width:88px;height:88px;margin:0 auto 18px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,#F0D48A,#C5A059 60%,#8C6D2E);color:#fff;font-family:"Playfair Display",serif;font-size:32px;font-weight:900;box-shadow:0 12px 26px rgba(140,109,46,.4);animation:sealPulse 2.8s ease-in-out infinite}
   @keyframes sealPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
   .env-card h1{margin:10px 0;font-size:clamp(27px,5vw,39px);line-height:1.25;font-weight:700}
   .env-card p{color:var(--muted);margin:8px 0}
-  .btn{display:inline-flex;align-items:center;gap:9px;border:0;cursor:pointer;background:var(--navy);color:#fff;padding:14px 26px;border-radius:2px;font-weight:600;letter-spacing:.4px;transition:transform .25s ease,box-shadow .25s ease,background .25s ease;text-decoration:none}
+  .btn{display:inline-flex;align-items:center;gap:9px;border:0;cursor:pointer;background:var(--navy);color:#fff;padding:14px 26px;border-radius:2px;font-weight:600;letter-spacing:.4px;transition:transform .3s ease,box-shadow .3s ease,background .3s ease;text-decoration:none;position:relative;overflow:hidden}
   .btn:hover{transform:translateY(-2px);box-shadow:0 16px 32px rgba(14,27,51,.28)}
   .btn.gold{background:linear-gradient(105deg,#8C6D2E,#C5A059,#E6C987);color:#14213D}
+  .btn.gold:after{content:"";position:absolute;top:0;left:-70%;width:45%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);transition:left .6s ease}
+  .btn.gold:hover:after{left:130%}
   .btn.light{background:#fff;color:var(--navy);border:1px solid var(--line)}
   .btn .icon{width:18px;height:18px;stroke:currentColor}
 
-  /* Hero */
-  header.hero{padding:96px 0 58px;text-align:center;position:relative;background:linear-gradient(180deg,#FFFDF8,transparent)}
-  header.hero:before,header.hero:after{content:"";position:absolute;left:50%;transform:translateX(-50%);width:1px;height:44px;background:var(--line)}
+  header.hero{padding:96px 0 58px;text-align:center;position:relative;overflow:hidden;background:radial-gradient(700px 380px at 50% -60px,rgba(230,201,135,.35),transparent 65%),linear-gradient(180deg,#FFFDF8,transparent)}
+  header.hero:before,header.hero:after{content:"";position:absolute;left:50%;transform:translateX(-50%);width:1px;height:44px;background:var(--line);z-index:1}
   header.hero:before{top:0} header.hero:after{bottom:0}
   .hero .big{font-size:clamp(120px,24vw,210px);line-height:.85;margin:14px 0 0;font-weight:900}
   .hero h2{font-size:clamp(31px,6vw,56px);line-height:1.2;margin:8px 0 10px;font-weight:700}
   .years{font-size:clamp(17px,3vw,22px);letter-spacing:.42em;font-weight:500}
+  .class-badge{display:inline-flex;align-items:center;gap:9px;margin-top:18px;background:var(--navy);color:var(--gold-light);padding:10px 20px;letter-spacing:.22em;font-weight:600;font-size:14px}
+  .class-badge .icon{width:20px;height:20px;stroke:var(--gold-light)}
   .ornament{display:flex;align-items:center;gap:14px;justify-content:center;margin:28px auto;color:var(--gold)}
   .ornament:before,.ornament:after{content:"";height:1px;width:72px;background:var(--line)}
   .ornament span{font-size:11px}
   .pills{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:26px}
-  .pill{display:inline-flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);padding:12px 18px;font-weight:500;box-shadow:0 8px 22px rgba(20,33,61,.06)}
+  .pill{display:inline-flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);padding:12px 18px;font-weight:500;box-shadow:0 8px 22px rgba(20,33,61,.06);transition:transform .3s ease,box-shadow .3s ease}
+  .pill:hover{transform:translateY(-3px);box-shadow:0 14px 28px rgba(20,33,61,.12)}
   .pill .icon{width:20px;height:20px}
 
   section{padding:54px 0}
-  .card{background:var(--paper);border:1px solid var(--line);padding:36px;position:relative;box-shadow:0 18px 44px rgba(20,33,61,.06)}
+  .card{background:var(--paper);border:1px solid var(--line);padding:36px;position:relative;box-shadow:0 18px 44px rgba(20,33,61,.06);transition:transform .4s ease,box-shadow .4s ease,border-color .4s ease}
+  .card:hover{transform:translateY(-4px);box-shadow:0 26px 54px rgba(20,33,61,.12);border-color:rgba(197,160,89,.8)}
   .card:before{content:"";position:absolute;inset:8px;border:1px solid rgba(197,160,89,.22);pointer-events:none}
   h3.sec{font-family:"Playfair Display",serif;font-size:clamp(27px,4vw,37px);line-height:1.3;margin:0 0 8px;text-align:center;font-weight:700}
   .sec-sub{text-align:center;color:var(--muted);margin:0 0 30px}
-  .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s ease}
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .9s ease,transform .9s cubic-bezier(.22,.8,.3,1)}
   .reveal.in{opacity:1;transform:none}
 
   .count{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:720px;margin:0 auto}
-  .count div{background:var(--navy);color:#fff;padding:22px 8px;text-align:center;border:1px solid rgba(230,201,135,.35)}
-  .count b{display:block;font-family:"Playfair Display",serif;font-size:clamp(30px,6vw,48px);line-height:1;color:var(--gold-light);font-weight:700}
+  .count div{background:var(--navy);color:#fff;padding:22px 8px;text-align:center;border:1px solid rgba(230,201,135,.35);box-shadow:0 14px 30px rgba(14,27,51,.22)}
+  .count b{display:block;font-family:"Playfair Display",serif;font-size:clamp(30px,6vw,48px);line-height:1;color:var(--gold-light);font-weight:700;text-shadow:0 0 18px rgba(230,201,135,.35)}
   .count span{font-size:12px;letter-spacing:.18em;text-transform:uppercase;opacity:.85}
 
   .letter{font-size:18px;text-align:justify}
@@ -86,6 +93,9 @@
   .rsvp{text-align:center}
   .rsvp .actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:22px}
   #rsvpMsg{margin-top:18px;font-weight:600;color:#1F6B3A;min-height:24px}
+  #musicBtn{position:fixed;right:18px;bottom:18px;z-index:40;display:none;align-items:center;gap:8px;background:var(--navy);color:#fff;border:1px solid rgba(230,201,135,.5);padding:11px 16px;border-radius:999px;cursor:pointer;font-weight:600;box-shadow:0 14px 30px rgba(14,27,51,.3)}
+  #musicBtn.show{display:inline-flex}
+  #musicBtn .icon{width:18px;height:18px;stroke:var(--gold-light)}
   footer{padding:46px 0 68px;text-align:center;color:var(--muted)}
   footer .serif{color:var(--ink);font-size:25px}
   @media(max-width:680px){
@@ -106,9 +116,9 @@
 <div id="envelope" role="dialog" aria-modal="true" aria-label="Phong bì thiệp mời">
   <div class="env-card">
     <div class="seal">15</div>
-    <div class="small">Trân Trọng Kính Mời</div>
+    <div class="small">Trân Trọng Kính Mời • Lớp 12A1</div>
     <h1 class="serif">Kỷ Niệm 15 Năm<br>Ngày Ra Trường</h1>
-    <p><strong>2012 — 2027</strong><br>Trường THPT Số 1 Mường Khương</p>
+    <p><strong>Lớp 12A1 — 2012 — 2027</strong><br>Trường THPT Số 1 Mường Khương</p>
     <p>Một phong bì, một lời hẹn trở về.<br>Chạm để mở thiệp mời.</p>
     <button class="btn gold" id="openBtn" type="button">Mở Thiệp Mời</button>
     <p class="small" style="margin-top:20px">Thứ Sáu • 01/01/2027 • 9 Giờ 00</p>
@@ -116,19 +126,21 @@
 </div>
 
 <main id="main">
-  <header class="hero wrap">
+  <header class="hero wrap" id="hero">
     <div class="small">Trân Trọng Kính Mời</div>
     <div class="big serif gold-text" aria-label="15 năm">15</div>
     <div class="serif" style="font-size:21px;letter-spacing:.42em">NĂM</div>
     <h2 class="serif">Kỷ Niệm Ngày Ra Trường</h2>
     <div class="years">2012 &nbsp;—&nbsp; 2027</div>
+    <div><span class="class-badge"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1 4 2 6 2s6-1 6-2v-5"/><path d="M22 10v5"/></svg>LỚP 12A1</span></div>
     <div class="ornament"><span>◆</span></div>
     <p style="font-size:19px"><strong>Trường THPT Số 1 Mường Khương</strong></p>
     <div class="pills">
       <span class="pill"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>9 Giờ 00 — Thứ Sáu, Ngày 01/01/2027</span>
       <span class="pill"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21c-4-4.5-7-7.8-7-11a7 7 0 0 1 14 0c0 3.2-3 6.5-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Trường THPT Số 1 Mường Khương</span>
     </div>
-    <div style="margin-top:30px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+    <p style="color:var(--muted);font-size:14px;margin-top:22px">Nhạc nền không lời nhẹ nhàng sẽ phát sau khi mở thiệp. Bạn có thể tắt hoặc bật lại bằng nút ở góc dưới màn hình.</p>
+    <div style="margin-top:22px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
       <a class="btn" href="#thong-tin">Xem Thời Gian Và Địa Điểm</a>
       <a class="btn light" href="#xac-nhan">Xác Nhận Tham Dự</a>
     </div>
@@ -148,21 +160,21 @@
   <section class="wrap reveal">
     <div class="card letter">
       <h3 class="sec">Lời Mời</h3>
-      <p class="sec-sub">Gửi tới các bạn cựu học sinh khóa ra trường năm 2012.</p>
-      <p>15 năm trôi qua kể từ ngày chúng ta rời mái trường THPT Số 1 Mường Khương. Mỗi người một hành trình, một cuộc sống riêng, nhưng ký ức về những năm tháng học trò vẫn còn nguyên vẹn như ngày đầu.</p>
-      <p>Nhân dịp kỷ niệm 15 năm ngày ra trường, chúng ta cùng trở về: Gặp lại thầy cô, gặp lại bạn bè, cùng nhau ôn lại những câu chuyện cũ và viết tiếp một kỷ niệm mới cho khóa học của mình.</p>
+      <p class="sec-sub">Gửi tới các bạn Lớp 12A1, Trường THPT Số 1 Mường Khương.</p>
+      <p>15 năm trôi qua kể từ ngày tập thể Lớp 12A1 rời mái trường THPT Số 1 Mường Khương. Mỗi người một hành trình, một cuộc sống riêng, nhưng ký ức về những năm tháng học trò, về thầy cô và bạn bè cùng lớp vẫn còn nguyên vẹn như ngày đầu.</p>
+      <p>Nhân dịp kỷ niệm 15 năm ngày ra trường, Lớp 12A1 chúng ta cùng trở về: Gặp lại thầy cô, gặp lại nhau, cùng nhau ôn lại những câu chuyện cũ và viết tiếp một kỷ niệm mới cho lớp mình.</p>
       <p>Sự hiện diện của bạn chính là món quà ý nghĩa nhất cho ngày hội ngộ này. Hẹn gặp bạn lúc 9 giờ sáng, ngày 01/01/2027, tại ngôi trường thân thương của chúng ta.</p>
-      <p style="text-align:right"><em>Trân trọng,<br><strong>Ban Tổ Chức Kỷ Niệm 15 Năm</strong></em></p>
+      <p style="text-align:right"><em>Trân trọng,<br><strong>Ban Tổ Chức Kỷ Niệm 15 Năm — Lớp 12A1</strong></em></p>
     </div>
   </section>
 
   <section id="thong-tin" class="wrap reveal">
     <h3 class="sec">Thời Gian Và Địa Điểm</h3>
-    <p class="sec-sub">Thông tin chính thức của buổi kỷ niệm.</p>
+    <p class="sec-sub">Thông tin chính thức của buổi kỷ niệm Lớp 12A1.</p>
     <div class="grid3">
       <div class="card info"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><h4>Thời Gian</h4><p>9 Giờ 00<br>Thứ Sáu, Ngày 01/01/2027</p></div>
       <div class="card info"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21c-4-4.5-7-7.8-7-11a7 7 0 0 1 14 0c0 3.2-3 6.5-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><h4>Địa Điểm</h4><p>Trường THPT Số 1 Mường Khương<br>Mường Khương, Lào Cai</p></div>
-      <div class="card info"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1 4 2 6 2s6-1 6-2v-5"/><path d="M22 10v5"/></svg><h4>Dịp Kỷ Niệm</h4><p>15 Năm Ngày Ra Trường<br>Niên Khóa 2012 — 2027</p></div>
+      <div class="card info"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1 4 2 6 2s6-1 6-2v-5"/><path d="M22 10v5"/></svg><h4>Lớp Kỷ Niệm</h4><p>Lớp 12A1<br>15 Năm Ngày Ra Trường<br>2012 — 2027</p></div>
     </div>
     <div style="text-align:center;margin-top:24px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
       <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Tr%C6%B0%E1%BB%9Dng%20THPT%20S%E1%BB%91%201%20M%C6%B0%E1%BB%9Dng%20Kh%C6%B0%C6%A1ng">Chỉ Đường Tới Trường</a>
@@ -172,11 +184,11 @@
 
   <section class="wrap reveal">
     <h3 class="sec">Hành Trình 15 Năm</h3>
-    <p class="sec-sub">Từ ngày ra trường tới ngày trở về.</p>
+    <p class="sec-sub">Từ ngày Lớp 12A1 ra trường tới ngày trở về.</p>
     <div class="timeline">
-      <article><h4>2012 — Ngày Ra Trường</h4><p>Khép lại những năm tháng học trò tại Trường THPT Số 1 Mường Khương, mở ra một chặng đường mới.</p></article>
-      <article><h4>2012 — 2027 — Mỗi Người Một Hành Trình</h4><p>15 năm trưởng thành, với biết bao đổi thay, nhưng tình bạn và ký ức về mái trường xưa vẫn còn đó.</p></article>
-      <article><h4>01/01/2027 — Trở Về</h4><p>9 giờ sáng, chúng ta gặp lại nhau tại chính nơi mọi kỷ niệm bắt đầu.</p></article>
+      <article><h4>2012 — Lớp 12A1 Ra Trường</h4><p>Khép lại những năm tháng học trò tại Trường THPT Số 1 Mường Khương, mở ra một chặng đường mới.</p></article>
+      <article><h4>2012 — 2027 — Mỗi Người Một Hành Trình</h4><p>15 năm trưởng thành, với biết bao đổi thay, nhưng tình bạn cùng lớp và ký ức về mái trường xưa vẫn còn đó.</p></article>
+      <article><h4>01/01/2027 — Trở Về</h4><p>9 giờ sáng, Lớp 12A1 gặp lại nhau tại chính nơi mọi kỷ niệm bắt đầu.</p></article>
     </div>
   </section>
 
@@ -184,14 +196,14 @@
     <div class="card quote">
       <div class="ornament"><span>◆</span></div>
       <p class="serif">“15 năm có thể làm thay đổi rất nhiều thứ,<br>nhưng không làm phai đi tình bạn thuở học trò.”</p>
-      <p class="small" style="margin-top:16px">Hẹn Gặp Lại — 01/01/2027</p>
+      <p class="small" style="margin-top:16px">Lớp 12A1 — Hẹn Gặp Lại — 01/01/2027</p>
     </div>
   </section>
 
   <section id="xac-nhan" class="wrap reveal">
     <div class="card rsvp">
       <h3 class="sec">Xác Nhận Tham Dự</h3>
-      <p class="sec-sub">Bạn vui lòng bấm một lựa chọn để Ban tổ chức nắm được số lượng. Hình thức tổng hợp chính thức sẽ được Ban tổ chức chốt và cập nhật thêm.</p>
+      <p class="sec-sub">Bạn vui lòng bấm một lựa chọn để Ban tổ chức Lớp 12A1 nắm được số lượng. Hình thức tổng hợp chính thức sẽ được Ban tổ chức chốt và cập nhật thêm.</p>
       <div class="actions">
         <button class="btn gold" type="button" data-rsvp="Tôi sẽ tham dự">Tôi Sẽ Tham Dự</button>
         <button class="btn light" type="button" data-rsvp="Tiếc là tôi vắng mặt">Tiếc Là Tôi Vắng Mặt</button>
@@ -202,9 +214,14 @@
 
   <footer class="wrap">
     <div class="serif">Hẹn Gặp Lại Tại Mái Trường Xưa</div>
-    <p>9 Giờ 00 — Thứ Sáu, Ngày 01/01/2027<br>Trường THPT Số 1 Mường Khương • Kỷ Niệm 15 Năm Ngày Ra Trường 2012 — 2027</p>
+    <p>Lớp 12A1 • 9 Giờ 00 — Thứ Sáu, Ngày 01/01/2027<br>Trường THPT Số 1 Mường Khương • Kỷ Niệm 15 Năm Ngày Ra Trường 2012 — 2027</p>
   </footer>
 </main>
+
+<button id="musicBtn" type="button" aria-label="Bật hoặc tắt nhạc nền">
+  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+  <span id="musicLabel">Tắt Nhạc</span>
+</button>
 
 <script>
   const target = new Date('2027-01-01T09:00:00+07:00');
@@ -219,15 +236,69 @@
     $('m').textContent = String(mins).padStart(2,'0'); $('s').textContent = String(secs).padStart(2,'0');
   }
   tick(); setInterval(tick, 1000);
+
+  // Hạt vàng bay nhẹ ở khu vực hero, không dùng hình ảnh.
+  const hero = $('hero');
+  for (let i = 0; i < 14; i++) {
+    const s = document.createElement('span');
+    s.className = 'spark';
+    s.style.left = (4 + Math.random() * 92) + '%';
+    s.style.top = (8 + Math.random() * 80) + '%';
+    s.style.animationDelay = (Math.random() * 6) + 's';
+    s.style.animationDuration = (5.5 + Math.random() * 3.5) + 's';
+    hero.appendChild(s);
+  }
+
+  // Nhạc nền không lời, nhẹ nhàng, tạo bằng Web Audio, không cần file ngoài.
+  // Giai điệu ngũ cung chậm, âm lượng thấp, lặp lại. Chỉ bắt đầu sau khi người xem bấm mở thiệp.
+  let audioCtx = null, musicTimer = null, musicOn = false, noteIndex = 0;
+  const melody = [523.25, 587.33, 659.25, 783.99, 880.00, 783.99, 659.25, 587.33, 523.25, 659.25, 783.99, 1046.50, 880.00, 783.99, 659.25, 523.25];
+  function playNote(freq){
+    if (!audioCtx) return;
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = 'triangle';
+    osc.frequency.value = freq;
+    const now = audioCtx.currentTime;
+    gain.gain.setValueAtTime(0, now);
+    gain.gain.linearRampToValueAtTime(0.055, now + 0.45);
+    gain.gain.exponentialRampToValueAtTime(0.0008, now + 2.1);
+    osc.connect(gain); gain.connect(audioCtx.destination);
+    osc.start(now); osc.stop(now + 2.2);
+  }
+  function startMusic(){
+    if (!audioCtx) { try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e) { return; } }
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    if (musicTimer) return;
+    musicOn = true; $('musicLabel').textContent = 'Tắt Nhạc';
+    musicTimer = setInterval(() => {
+      playNote(melody[noteIndex % melody.length]);
+      noteIndex++;
+    }, 2100);
+    playNote(melody[0]); noteIndex = 1;
+  }
+  function stopMusic(){
+    musicOn = false;
+    if (musicTimer) { clearInterval(musicTimer); musicTimer = null; }
+    $('musicLabel').textContent = 'Bật Nhạc';
+  }
+  $('musicBtn').addEventListener('click', () => { musicOn ? stopMusic() : startMusic(); });
+
   $('openBtn').addEventListener('click', () => {
     $('envelope').classList.add('hide');
     document.body.classList.add('opened');
+    $('musicBtn').classList.add('show');
     document.querySelector('main').scrollIntoView({behavior:'smooth'});
+    startMusic();
   });
+
+  const reveals = document.querySelectorAll('.reveal');
+  reveals.forEach((el, i) => { el.style.transitionDelay = (i * 90) + 'ms'; });
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
   }, {threshold: .12});
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  reveals.forEach(el => io.observe(el));
+
   document.querySelectorAll('[data-rsvp]').forEach(btn => {
     btn.addEventListener('click', () => {
       $('rsvpMsg').textContent = 'Cảm ơn bạn đã xác nhận: ' + btn.dataset.rsvp + '. Hẹn gặp bạn vào ngày 01/01/2027.';
@@ -235,15 +306,15 @@
     });
   });
   $('calBtn').addEventListener('click', () => {
-    const ics = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Ky niem 15 nam//VI','BEGIN:VEVENT',
-      'UID:15-nam-ra-truong-2027@muong-khuong','DTSTAMP:20261022T100000Z',
+    const ics = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Ky niem 15 nam Lop 12A1//VI','BEGIN:VEVENT',
+      'UID:15-nam-ra-truong-lop-12a1-2027@muong-khuong','DTSTAMP:20261022T100000Z',
       'DTSTART:20270101T020000Z','DTEND:20270101T050000Z',
-      'SUMMARY:Kỷ niệm 15 năm ngày ra trường 2012-2027',
-      'LOCATION:Trường THPT Số 1 Mường Khương','DESCRIPTION:9 giờ 00, Thứ Sáu, ngày 01/01/2027 tại Trường THPT Số 1 Mường Khương.',
+      'SUMMARY:Kỷ niệm 15 năm ngày ra trường Lớp 12A1 2012-2027',
+      'LOCATION:Trường THPT Số 1 Mường Khương','DESCRIPTION:Lớp 12A1. 9 giờ 00, Thứ Sáu, ngày 01/01/2027 tại Trường THPT Số 1 Mường Khương.',
       'END:VEVENT','END:VCALENDAR'].join('\r\n');
     const a = document.createElement('a');
     a.href = URL.createObjectURL(new Blob([ics], {type:'text/calendar'}));
-    a.download = 'ky-niem-15-nam-01012027.ics'; a.click();
+    a.download = 'ky-niem-15-nam-lop-12a1-01012027.ics'; a.click();
     URL.revokeObjectURL(a.href);
   });
 </script>

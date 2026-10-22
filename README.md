@@ -1,17 +1,19 @@
-# Kỷ Niệm 15 Năm Ngày Ra Trường 2012 - 2027
+# Kỷ Niệm 15 Năm Ngày Ra Trường — Lớp 12A1, 2012 - 2027
 
-Thiệp mời kỷ niệm 15 năm ngày ra trường của cựu học sinh Trường THPT Số 1 Mường Khương.
+Thiệp mời kỷ niệm 15 năm ngày ra trường của Lớp 12A1, Trường THPT Số 1 Mường Khương.
 
 ## Thông tin chính thức
 
+- Lớp: Lớp 12A1
 - Thời gian: 9 giờ 00, Thứ Sáu, ngày 01/01/2027
 - Địa điểm: Trường THPT Số 1 Mường Khương
 - Trang chính: `index.html`
 
 ## Phong cách bản này
 
-- Sang trọng: nền kem, chữ xanh navy đậm, điểm vàng, khung viền kép, chữ serif lớn.
+- Thật sang trọng: nền kem, chữ xanh navy đậm, điểm vàng, khung viền kép, chữ serif lớn, hạt vàng bay nhẹ, hiệu ứng hiện dần có độ trễ, nút vàng có vệt sáng khi rê chuột.
 - Icon dạng flat: icon SVG nét mảnh, không dùng emoji, không dùng hình ảnh.
+- Nhạc nền: nhạc không lời nhẹ nhàng, tạo bằng Web Audio ngay trong trang, không cần file nhạc ngoài; nhạc chỉ bắt đầu sau khi người xem bấm 'Mở Thiệp Mời' và có nút Tắt/Bật nhạc ở góc dưới màn hình.
 - Theo yêu cầu ngày 2026-10-22: thiệp không cần hình ảnh ở bản này, hình ảnh sẽ bổ sung sau nếu Ban tổ chức chốt.
 
 ## Tính năng
@@ -24,7 +26,7 @@ Thiệp mời kỷ niệm 15 năm ngày ra trường của cựu học sinh Trư
 ## Cần cập nhật trước khi gửi thiệp
 
 1. Hình ảnh sẽ bổ sung sau theo yêu cầu (bản này chưa dùng hình ảnh).
-2. Chốt hình thức tổng hợp xác nhận tham dự của Ban tổ chức (hiện tại nút xác nhận chỉ lưu trên thiết bị người bấm).
+2. Chốt hình thức tổng hợp xác nhận tham dự của Ban tổ chức Lớp 12A1 (hiện tại nút xác nhận chỉ lưu trên thiết bị người bấm).
 3. Bổ sung chương trình chi tiết trong ngày nếu Ban tổ chức đã chốt (hiện tại thiệp chỉ ghi thời gian tập trung chính thức là 9 giờ 00).
 
 ## Chạy GitHub Pages
