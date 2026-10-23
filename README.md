@@ -12,20 +12,21 @@ Quyển sách thiệp mời kỷ niệm 15 năm ngày ra trường của Lớp 1
 ## Quyển sách thật
 
 - Toàn bộ giao diện là một quyển sách sang trọng: bìa navy đậm viền vàng, giấy kem, chữ serif lớn, gáy sách ở cạnh trái.
+- Mọi trang có cùng một kích thước cố định (khung sách cao 640–780px tùy màn hình, trang cao đúng bằng khung, nội dung không làm trang cao thấp khác nhau).
 - Hiệu ứng lật trang thật và chậm: một tờ giấy xoay quanh gáy trái trong 1,4 giây, có bóng đổ ở mép trang, trang mới lộ ra dần khi tờ giấy gần dựng đứng.
 - Thao tác: bấm mũi tên Trang Trước/Trang Sau, bấm vào nửa trái/phải của sách, vuốt sang trái/phải trên điện thoại, hoặc dùng phím mũi tên.
-- Các trang, theo đúng thứ tự: 1 Bìa sách, 2 Lời mở đầu, 3 Lời mời (thời gian và địa điểm), 4 Hành trình 15 năm, 5 Trang cuối — Hẹn gặp lại và Xác nhận tham dự.
+- Các trang, theo đúng thứ tự: 1 Bìa sách, 2 Lời mở đầu, 3 Lớp học năm ấy, 4 Mùa hè chia tay, 5 Mười lăm năm sau, 6 Lời mời (thời gian, địa điểm và đếm ngược), 7 Hành trình 15 năm, 8 Trang cuối — Hẹn gặp lại và Xác nhận tham dự.
+- Câu chuyện được kể xuyên suốt các trang 2–5 để người xem đọc chậm trong lúc nghe nhạc, không chỉ xem thông tin sự kiện.
 - Xác nhận tham dự chỉ có ở trang cuối, không có ở các trang trước.
-- Đếm ngược vẫn giữ lại ở trang Lời mời, đếm trực tiếp tới 9 giờ 00 ngày 01/01/2027.
-- Đã bỏ các chi tiết thừa so với bản trước: nút chỉ đường, nút thêm vào lịch, chấm chọn trang, dòng hướng dẫn dài, các thẻ thông tin rời rạc.
+- Chữ được căn trái, không căn đều hai bên, các dòng thông tin dài được ngắt chủ động thành dòng ngắn cân đối (thời gian, ngày, tên trường, câu hỏi xác nhận) để không bị xuống dòng lung tung trên điện thoại.
+- Đếm ngược giữ lại ở trang Lời mời, đếm trực tiếp tới 9 giờ 00 ngày 01/01/2027.
+- Đã bỏ các chi tiết thừa so với bản trước: nút chỉ đường, nút thêm vào lịch, chấm chọn trang, dòng hướng dẫn dài, các thẻ thông tin rời rạc, và dòng thông tin nhạc nền ở trang cuối.
 - Icon dạng flat: icon SVG nét mảnh, không dùng emoji, không dùng hình ảnh.
 
 ## Nhạc nền
 
-- Nhạc nền là bài hát về tuổi học trò: Mong Ước Kỷ Niệm Xưa — Sáng tác: Nguyễn Xuân Phương, trình bày: Nhóm Mắt Ngọc, phát qua YouTube (video Q6IrWD7cFUI), có ghi nguồn ở trang cuối.
-- Nhạc chỉ bắt đầu sau khi người xem bấm 'Mở Sách', có nút Tắt/Bật nhạc ở góc dưới màn hình.
-- Nếu video YouTube không phát được, trang tự chuyển sang giai điệu không lời nhẹ nhàng tạo bằng Web Audio trong trang, không cần file nhạc ngoài.
-- Lưu ý bản quyền: trang không tải lên hay lưu trữ file nhạc, chỉ phát qua trình phát YouTube của video gốc.
+- Nhạc nền phát sau khi người xem bấm 'Mở Sách', có nút Tắt/Bật nhạc ở góc dưới màn hình.
+- Trang không hiển thị dòng thông tin nhạc nền, và không tải lên hay lưu trữ file nhạc.
 
 ## Chạy GitHub Pages
 

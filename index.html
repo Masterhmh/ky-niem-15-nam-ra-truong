@@ -25,8 +25,8 @@
 
   .book{position:relative;background:linear-gradient(90deg,#0B1526,#14213D 12%,#0E1B33);padding:13px;border:1px solid rgba(230,201,135,.5);box-shadow:0 40px 90px rgba(0,0,0,.5)}
   .book:before{content:"";position:absolute;inset:7px;border:1px solid rgba(230,201,135,.35);pointer-events:none;z-index:30}
-  .book-stage{position:relative;min-height:640px;perspective:1800px}
-  .page{position:relative;background:var(--paper);padding:54px 48px 46px;min-height:640px;box-shadow:inset 0 0 0 1px rgba(197,160,89,.35)}
+  .book-stage{position:relative;height:clamp(640px, calc(100svh - 170px), 780px);overflow:hidden;perspective:1800px}
+  .page{position:relative;background:var(--paper);padding:54px 48px 46px;height:100%;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(197,160,89,.35)}
   .page:before{content:"";position:absolute;inset:12px;border:1px solid rgba(197,160,89,.25);pointer-events:none}
   .page:after{content:"";position:absolute;top:0;bottom:0;left:0;width:10px;background:linear-gradient(90deg,rgba(20,33,61,.16),transparent);pointer-events:none}
   .page.is-cover{background:linear-gradient(180deg,#0E1B33,#1B2F55);color:#F6F1E7}
@@ -52,13 +52,18 @@
   .btn.gold:after{content:"";position:absolute;top:0;left:-70%;width:45%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);transition:left .6s ease}
   .btn.gold:hover:after{left:130%}
   .btn.light{background:#fff;color:var(--navy);border:1px solid var(--line)}
-  .cover{text-align:center;padding-top:58px}
-  .seal{width:92px;height:92px;margin:0 auto 18px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,#F0D48A,#C5A059 60%,#8C6D2E);color:#fff;font-family:"Playfair Display",serif;font-size:34px;font-weight:900;box-shadow:0 14px 28px rgba(140,109,46,.4)}
-  .cover .big{font-size:clamp(110px,22vw,180px);line-height:.85;margin:14px 0 0;font-weight:900}
-  .cover h1{font-size:clamp(30px,5.5vw,48px);line-height:1.25;margin:10px 0;font-weight:700}
-  .letter{font-size:18px;text-align:justify}
-  .letter p{margin:0 0 16px}
-  .detail{display:flex;align-items:center;gap:14px;justify-content:center;margin:14px 0;font-size:18px}
+  .cover{text-align:center;padding-top:24px}
+  .cover p{text-wrap:balance}
+  .seal{width:76px;height:76px;margin:0 auto 14px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,#F0D48A,#C5A059 60%,#8C6D2E);color:#fff;font-family:"Playfair Display",serif;font-size:28px;font-weight:900;box-shadow:0 14px 28px rgba(140,109,46,.4)}
+  .cover .big{font-size:clamp(90px,20vw,150px);line-height:.85;margin:10px 0 0;font-weight:900}
+  .cover h1{font-size:clamp(30px,5.5vw,48px);line-height:1.25;margin:10px 0;font-weight:700;text-wrap:balance}
+  .letter{font-size:17px;line-height:1.75;text-align:left}
+  .letter p{margin:0 0 14px}
+  .detail{display:flex;align-items:flex-start;gap:14px;justify-content:flex-start;max-width:520px;margin:16px auto;font-size:18px}
+  .detail-text span{display:block;line-height:1.55;text-wrap:balance}
+  .detail-text .d2{font-size:16px;color:var(--muted)}
+  .foot-note{color:var(--muted);font-size:15px;line-height:1.65;text-wrap:balance}
+  .quote{font-size:clamp(20px,4.5vw,26px);line-height:1.55;text-wrap:balance}
   .count{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:560px;margin:26px auto 0}
   .count div{background:var(--navy);color:#fff;padding:16px 6px;text-align:center;border:1px solid rgba(230,201,135,.35)}
   .count b{display:block;font-family:"Playfair Display",serif;font-size:clamp(26px,5vw,38px);line-height:1;color:var(--gold-light)}
@@ -68,11 +73,12 @@
   .timeline{max-width:600px;margin:0 auto;border-left:1px solid var(--line);padding-left:28px}
   .timeline article{position:relative;padding:0 0 26px}
   .timeline article:before{content:"";position:absolute;left:-35px;top:7px;width:13px;height:13px;background:var(--gold);border:2px solid #fff;box-shadow:0 0 0 1px var(--line);transform:rotate(45deg)}
-  .timeline h4{margin:0;font-size:18px}
+  .timeline h4{margin:0;font-size:18px;text-wrap:balance}
   .timeline p{margin:4px 0 0;color:var(--muted)}
   .center{text-align:center}
-  .actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:24px}
-  #rsvpMsg{margin-top:16px;font-weight:600;color:#1F6B3A;min-height:24px;text-align:center}
+  .actions{display:flex;flex-direction:column;gap:12px;align-items:center;justify-content:center;margin-top:24px}
+  .actions .btn{min-width:260px;justify-content:center}
+  #rsvpMsg{margin-top:16px;font-weight:600;color:#1F6B3A;min-height:24px;text-align:center;text-wrap:balance}
 
   .book-nav{display:flex;align-items:center;justify-content:space-between;margin-top:16px}
   .navbtn{background:transparent;border:1px solid rgba(230,201,135,.5);color:#F0D48A;padding:11px 16px;cursor:pointer;display:inline-flex;align-items:center}
@@ -84,8 +90,7 @@
   #musicBtn .icon{width:18px;height:18px;stroke:var(--gold-light)}
   #ytPlayer{position:fixed;left:0;bottom:0;width:1px;height:1px;opacity:0;pointer-events:none}
   @media(max-width:680px){
-    .page,.book-stage{min-height:600px}
-    .page,.turn-sheet .turn-inner{padding:40px 26px 34px}
+    .page,.turn-sheet .turn-inner{padding:38px 26px 32px}
     .letter{font-size:17px}
   }
   @media(prefers-reduced-motion:reduce){
@@ -103,7 +108,7 @@
   </div>
   <div class="book-nav">
     <button class="navbtn" id="prevBtn" type="button" aria-label="Trang trước"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
-    <div class="page-ind" id="pageInd">1 / 5</div>
+    <div class="page-ind" id="pageInd">1 / 8</div>
     <button class="navbtn" id="nextBtn" type="button" aria-label="Trang sau"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
   </div>
 </div>
@@ -143,14 +148,41 @@
         </div>`
     },
     {
+      html: `<h2 class="sec">Lớp Học Năm Ấy</h2>
+        <div class="ornament"><span>◆</span></div>
+        <div class="letter">
+          <p>Buổi sáng, tiếng trống trường vang lên, cả lớp vội vã vào chỗ ngồi. Bảng đen còn thơm mùi phấn mới, ngoài cửa sổ nắng vừa lên.</p>
+          <p>Giờ ra chơi, sân trường rộn ràng tiếng cười. Những câu chuyện chưa kể hết đã phải quay lại lớp, hẹn nhau kể tiếp vào giờ sau.</p>
+          <p>Có những bài học khó, những lần kiểm tra hồi hộp, nhưng ngồi cạnh nhau, mọi thứ đều nhẹ nhàng hơn rất nhiều.</p>
+        </div>`
+    },
+    {
+      html: `<h2 class="sec">Mùa Hè Chia Tay</h2>
+        <div class="ornament"><span>◆</span></div>
+        <div class="letter">
+          <p>Mùa hè cuối cùng đến rất nhanh. Khi những ngày cuối năm học trôi qua, ai cũng hiểu rằng mình sắp phải xa nhau.</p>
+          <p>Ngày chia tay, ai cũng nói hẹn gặp lại, nhưng không ai biết lần gặp lại ấy phải đợi bao lâu.</p>
+          <p>Mỗi người mang theo một ước mơ, rời khỏi mái trường, mang theo cả một phần tuổi trẻ của nhau.</p>
+        </div>`
+    },
+    {
+      html: `<h2 class="sec">Mười Lăm Năm Sau</h2>
+        <div class="ornament"><span>◆</span></div>
+        <div class="letter">
+          <p>Mười lăm năm trôi qua, tóc đã khác, cuộc sống đã khác, nhưng mỗi khi nghe một bài hát cũ, lòng lại trở về lớp học năm ấy.</p>
+          <p>Có những người bạn lâu rồi chưa gặp, có những cái tên chỉ cần nhắc đến là cả một thời học trò ùa về.</p>
+          <p>Và rồi một ngày, chúng ta nhận ra: điều quý nhất không phải là thời gian đã qua, mà là những người đã cùng mình đi qua thời gian ấy.</p>
+        </div>`
+    },
+    {
       html: `<h2 class="sec">Lời Mời</h2>
         <div class="ornament"><span>◆</span></div>
         <div class="letter">
           <p>Nhân dịp kỷ niệm 15 năm ngày ra trường, Lớp 12A1 trân trọng kính mời các bạn trở về mái trường xưa, gặp lại thầy cô và bạn bè, cùng nhau ôn lại những câu chuyện cũ và viết tiếp một kỷ niệm mới.</p>
         </div>
-        <div class="detail"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span><strong>9 Giờ 00 — Thứ Sáu, Ngày 01/01/2027</strong></span></div>
-        <div class="detail"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21c-4-4.5-7-7.8-7-11a7 7 0 0 1 14 0c0 3.2-3 6.5-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span><strong>Trường THPT Số 1 Mường Khương</strong></span></div>
-        <div class="detail"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1 4 2 6 2s6-1 6-2v-5"/><path d="M22 10v5"/></svg><span><strong>Lớp 12A1 — 2012 — 2027</strong></span></div>
+        <div class="detail"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div class="detail-text"><span class="d1"><strong>9 Giờ 00</strong></span><span class="d2">Thứ Sáu, Ngày 01/01/2027</span></div></div>
+        <div class="detail"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21c-4-4.5-7-7.8-7-11a7 7 0 0 1 14 0c0 3.2-3 6.5-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><div class="detail-text"><span class="d1"><strong>Trường THPT Số 1</strong></span><span class="d2">Mường Khương</span></div></div>
+        <div class="detail"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1 4 2 6 2s6-1 6-2v-5"/><path d="M22 10v5"/></svg><div class="detail-text"><span class="d1"><strong>Lớp 12A1 — 2012 — 2027</strong></span></div></div>
         <p class="count-label">Đếm Ngược Tới Ngày Hội Ngộ</p>
         <div class="count" aria-live="off">
           <div><b id="d">—</b><span>Ngày</span></div>
@@ -158,7 +190,7 @@
           <div><b id="m">—</b><span>Phút</span></div>
           <div><b id="s">—</b><span>Giây</span></div>
         </div>
-        <p class="center" style="color:var(--muted);margin-top:26px">Sự hiện diện của bạn là món quà ý nghĩa nhất<br>cho ngày hội ngộ này.</p>`
+        <p class="center foot-note" style="margin-top:26px">Sự hiện diện của bạn là<br>món quà ý nghĩa nhất<br>cho ngày hội ngộ này.</p>`
     },
     {
       html: `<h2 class="sec">Hành Trình 15 Năm</h2>
@@ -173,15 +205,14 @@
       html: `<div class="center">
         <h2 class="sec">Hẹn Gặp Lại</h2>
         <div class="ornament"><span>◆</span></div>
-        <p class="serif" style="font-size:clamp(21px,3.5vw,28px);line-height:1.5">“15 năm có thể làm thay đổi rất nhiều thứ,<br>nhưng không làm phai đi tình bạn thuở học trò.”</p>
-        <p style="margin-top:26px"><strong>Bạn có tham dự ngày hội ngộ này không?</strong></p>
+        <p class="serif quote">“15 năm có thể làm thay đổi<br>rất nhiều thứ, nhưng không<br>làm phai đi tình bạn thuở học trò.”</p>
+        <p style="margin-top:26px"><strong>Bạn có tham dự<br>ngày hội ngộ này không?</strong></p>
         <div class="actions">
           <button class="btn gold" type="button" data-rsvp="Tôi sẽ tham dự">Tôi Sẽ Tham Dự</button>
           <button class="btn light" type="button" data-rsvp="Tôi không tham dự được">Tôi Không Tham Dự Được</button>
         </div>
         <p id="rsvpMsg" role="status"></p>
-        <p style="color:var(--muted);margin-top:26px">Lớp 12A1 • 9 Giờ 00 — Thứ Sáu, Ngày 01/01/2027<br>Trường THPT Số 1 Mường Khương</p>
-        <p style="color:var(--muted);font-size:13px">Nhạc nền: Mong Ước Kỷ Niệm Xưa — Nguyễn Xuân Phương, Nhóm Mắt Ngọc, phát qua YouTube.</p>
+        <p class="foot-note" style="margin-top:26px">Lớp 12A1<br>9 Giờ 00 — Thứ Sáu<br>Ngày 01/01/2027<br>Trường THPT Số 1 Mường Khương</p>
       </div>`
     }
   ];
@@ -245,7 +276,7 @@
     else if (x < rect.width * 0.28) prev();
   });
 
-  // Nhạc nền: bài hát về tuổi học trò qua YouTube, dự phòng bằng giai điệu Web Audio.
+  // Nhạc nền phát sau khi mở sách, có nút Tắt/Bật.
   let ytPlayer = null, ytReady = false, musicOn = false;
   let audioCtx = null, musicTimer = null, noteIndex = 0;
   const melody = [523.25, 587.33, 659.25, 783.99, 880.00, 783.99, 659.25, 587.33];
