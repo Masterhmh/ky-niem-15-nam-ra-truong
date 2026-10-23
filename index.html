@@ -156,6 +156,12 @@
     .quote{font-size:20px}
     .letter{text-align:left;text-align-last:left}
   }
+  .final-page .quote{font-size:21px;line-height:1.45}
+  .final-page .actions{gap:8px;margin-top:14px}
+  .final-page .actions .btn{min-width:220px;padding:11px 20px}
+  .final-page .count{margin-top:12px}
+  .final-page .count div{padding:10px 6px}
+  .final-page .count-label{margin-top:12px}
   @media(prefers-reduced-motion:reduce){
     .turn-sheet{transition:none}
     .dust{display:none}
@@ -270,11 +276,11 @@
         </div>`
     },
     {
-      html: `<div class="center">
+      html: `<div class="center final-page">
         <h2 class="sec">Hẹn Gặp Lại</h2>
         <div class="ornament"><span>◆</span></div>
         <p class="serif quote">“15 năm có thể làm thay đổi<br>rất nhiều thứ, nhưng không<br>làm phai đi tình bạn thuở học trò.”</p>
-        <p style="margin-top:26px"><strong>Bạn có tham dự<br>ngày hội ngộ này không?</strong></p>
+        <p style="margin-top:14px"><strong>Bạn có tham dự<br>ngày hội ngộ này không?</strong></p>
         <div class="actions">
           <button class="btn gold" type="button" data-rsvp="Tôi sẽ tham dự">Tôi Sẽ Tham Dự</button>
           <button class="btn light" type="button" data-rsvp="Tôi không tham dự được">Tôi Không Tham Dự Được</button>
@@ -287,7 +293,7 @@
           <div><b id="m">—</b><span>Phút</span></div>
           <div><b id="s">—</b><span>Giây</span></div>
         </div>
-        <p class="foot-note" style="margin-top:26px">Lớp 12A1<br>9 Giờ 00 — Thứ Sáu<br>Ngày 01/01/2027<br>Trường THPT Số 1 Mường Khương</p>
+        <p class="foot-note" style="margin-top:14px">Lớp 12A1<br>9 Giờ 00 — Thứ Sáu<br>Ngày 01/01/2027<br>Trường THPT Số 1 Mường Khương</p>
       </div>`
     }
   ];
@@ -324,7 +330,7 @@
     el.style.transform = '';
     const avail = el.clientHeight, full = el.scrollHeight;
     if (avail > 0 && full > avail) {
-      el.style.transform = 'scale(' + Math.max(0.55, avail / full) + ')';
+      el.style.transform = 'scale(' + Math.max(0.4, avail / full) + ')';
       el.style.transformOrigin = 'top center';
     }
   }
