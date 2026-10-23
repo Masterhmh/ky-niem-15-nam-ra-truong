@@ -25,8 +25,8 @@
 
   .book{position:relative;background:linear-gradient(135deg,#0B1526,#1B2F55 55%,#0E1B33);padding:13px;border:1px solid rgba(230,201,135,.5);border-radius:22px;box-shadow:0 30px 70px rgba(0,0,0,.45)}
   .book:before{content:"";position:absolute;inset:7px;border:1px solid rgba(230,201,135,.35);border-radius:16px;pointer-events:none;z-index:30}
-  .book-stage{position:relative;min-height:min(780px, calc(100svh - 170px));overflow:hidden;perspective:2000px;cursor:grab}
-  .page{position:relative;background:linear-gradient(180deg,#FFFEFA,#FFFDF8 60%,#FBF3DF);padding:48px 48px 56px;height:auto;overflow:visible;min-height:min(780px, calc(100svh - 170px));scrollbar-width:none;border-radius:14px;box-shadow:inset 0 0 0 1px rgba(197,160,89,.35), inset 0 -30px 60px rgba(197,160,89,.08)}
+  .book-stage{position:relative;height:min(780px, calc(100svh - 170px));overflow:hidden;perspective:2000px;cursor:grab}
+  .page{position:relative;background:linear-gradient(180deg,#FFFEFA,#FFFDF8 60%,#FBF3DF);padding:48px 48px 56px;height:100%;overflow:hidden;scrollbar-width:none;border-radius:14px;box-shadow:inset 0 0 0 1px rgba(197,160,89,.35), inset 0 -30px 60px rgba(197,160,89,.08)}
   .page::-webkit-scrollbar{display:none}
   .page:before{content:"";position:absolute;inset:12px;border:1px solid rgba(197,160,89,.25);border-radius:10px;pointer-events:none}
   .page:after{content:"";position:absolute;top:0;bottom:0;left:0;width:10px;background:linear-gradient(90deg,rgba(20,33,61,.16),transparent);pointer-events:none}
@@ -307,7 +307,7 @@
           <div><b id="m">—</b><span>Phút</span></div>
           <div><b id="s">—</b><span>Giây</span></div>
         </div>
-        <p class="foot-note" style="margin-top:14px">Lớp 12A1<br>9 Giờ 00 — Thứ Sáu<br>Ngày 01/01/2027<br>Trường THPT Số 1 Mường Khương</p>
+
       </div>`
     }
   ];
@@ -338,11 +338,25 @@
     if (count) count.textContent = 'Câu hỏi ' + (next + 1) + ' / ' + prompts.length;
     restorePromptState(box.closest('.page') || box.parentElement);
   }
-  // Không thu nhỏ toàn trang nữa: khung sách ôm sát nội dung, trang dài bao nhiêu thì khung cao bấy nhiêu, không còn trang co nhỏ nổi trong khung navy.
+  // Cố định kích thước trang: khung và trang kem luôn bằng nhau ở mọi trang; chỉ thu nhỏ nội dung bên trong khi nội dung dài hơn khung, để trang kem không co lại và không lộ khoảng navy.
+  function fitInner(container){
+    if (!container) return;
+    const wrap = container.querySelector('.page-fit');
+    if (!wrap) return;
+    wrap.style.transform = '';
+    const style = getComputedStyle(container);
+    const pad = parseFloat(style.paddingTop || '0') + parseFloat(style.paddingBottom || '0');
+    const avail = container.clientHeight - pad;
+    const full = wrap.scrollHeight;
+    if (avail > 0 && full > avail) {
+      wrap.style.transform = 'scale(' + Math.max(0.4, avail / full) + ')';
+      wrap.style.transformOrigin = 'top center';
+    }
+  }
   const pageEl = $('page'), sheet = $('turnSheet'), sheetInner = $('turnInner');
   function render(){
-    pageEl.innerHTML = pages[current].html;
-    restorePromptState(pageEl);
+    pageEl.innerHTML = '<div class="page-fit">' + pages[current].html + '</div>';
+    restorePromptState(pageEl); fitInner(pageEl);
     pageEl.classList.remove('page-in'); void pageEl.offsetWidth; pageEl.classList.add('page-in');
     $('progressBar').style.width = ((current + 1) / pages.length * 100) + '%';
     pageEl.classList.toggle('is-cover', !!pages[current].cover);
@@ -351,8 +365,8 @@
     $('nextBtn').disabled = current === pages.length - 1;
   }
   function setSheetFor(index){
-    sheetInner.innerHTML = pages[index].html;
-    restorePromptState(sheetInner);
+    sheetInner.innerHTML = '<div class="page-fit">' + pages[index].html + '</div>';
+    restorePromptState(sheetInner); fitInner(sheetInner);
     sheet.classList.toggle('is-cover', !!pages[index].cover);
   }
   function goTo(index, fromCover){
@@ -505,11 +519,12 @@
         const qEl = box.querySelector('.prompt-text');
         if (qEl) { promptAnswers[qEl.textContent] = ansBtn.dataset.ans; savePromptAnswers(); }
         advancePrompt(box);
+        fitInner(box.closest('.page') || box.closest('.turn-inner'));
       }
       return;
     }
     const promptBox = e.target.closest('.prompt-box');
-    if (promptBox) { advancePrompt(promptBox); return; }
+    if (promptBox) { advancePrompt(promptBox); fitInner(promptBox.closest('.page') || promptBox.closest('.turn-inner')); return; }
     const act = e.target.closest('[data-action]');
     if (act && act.dataset.action === 'open-book') { goTo(1, true); return; }
     const rsvp = e.target.closest('[data-rsvp]');
@@ -579,6 +594,8 @@
   setInterval(tick, 1000);
 
   render(); tick();
+  window.addEventListener('resize', () => fitInner(pageEl));
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => fitInner(pageEl));
 </script>
 <div class="rsvp-modal" id="rsvpModal" role="dialog" aria-modal="true" aria-labelledby="rsvpTitle">
   <div class="rsvp-card">
