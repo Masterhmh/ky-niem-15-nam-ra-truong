@@ -25,8 +25,8 @@
 
   .book{position:relative;background:linear-gradient(135deg,#0B1526,#1B2F55 55%,#0E1B33);padding:13px;border:1px solid rgba(230,201,135,.5);border-radius:22px;box-shadow:0 30px 70px rgba(0,0,0,.45)}
   .book:before{content:"";position:absolute;inset:7px;border:1px solid rgba(230,201,135,.35);border-radius:16px;pointer-events:none;z-index:30}
-  .book-stage{position:relative;height:min(780px, calc(100svh - 170px));overflow:hidden;perspective:2000px;cursor:grab}
-  .page{position:relative;background:linear-gradient(180deg,#FFFEFA,#FFFDF8 60%,#FBF3DF);padding:48px 48px 56px;height:100%;overflow:hidden;scrollbar-width:none;border-radius:14px;box-shadow:inset 0 0 0 1px rgba(197,160,89,.35), inset 0 -30px 60px rgba(197,160,89,.08)}
+  .book-stage{position:relative;min-height:min(780px, calc(100svh - 170px));overflow:hidden;perspective:2000px;cursor:grab}
+  .page{position:relative;background:linear-gradient(180deg,#FFFEFA,#FFFDF8 60%,#FBF3DF);padding:48px 48px 56px;height:auto;overflow:visible;min-height:min(780px, calc(100svh - 170px));scrollbar-width:none;border-radius:14px;box-shadow:inset 0 0 0 1px rgba(197,160,89,.35), inset 0 -30px 60px rgba(197,160,89,.08)}
   .page::-webkit-scrollbar{display:none}
   .page:before{content:"";position:absolute;inset:12px;border:1px solid rgba(197,160,89,.25);border-radius:10px;pointer-events:none}
   .page:after{content:"";position:absolute;top:0;bottom:0;left:0;width:10px;background:linear-gradient(90deg,rgba(20,33,61,.16),transparent);pointer-events:none}
@@ -112,10 +112,26 @@
   #rsvpError{margin:10px 0 0;font-size:14px;color:#B42318;min-height:20px;text-align:center}
 
   @media (max-width:600px){
-    .page{padding:32px 24px 28px}
+    .page{padding:28px 22px 24px}
+    h2.sec{font-size:28px}
     .ornament{margin:10px auto}
-    .letter{font-size:15.5px;line-height:1.58}
-    .prompt-box{margin-top:12px;padding:10px 12px}
+    .letter{font-size:15px;line-height:1.55}
+    .letter p{margin:0 0 10px}
+    .prompt-box{margin-top:12px;padding:12px}
+    .prompt-btn{font-size:14px;padding:8px 6px}
+    .prompt-text{font-size:14px;line-height:1.5}
+    .prompt-count{margin-top:4px}
+    .prompt-answers{margin-top:8px}
+    .ans-btn{padding:8px 6px;font-size:14px}
+    .detail{font-size:16px;margin:12px auto}
+    .quote{font-size:20px}
+    .cover{padding-top:24px}
+  }
+  @media (max-width:600px) and (max-height:720px){
+    .page{padding:24px 20px 20px}
+    .letter{font-size:14px;line-height:1.5}
+    h2.sec{font-size:26px}
+    .prompt-box{padding:10px}
   }
   .book-nav{display:flex;align-items:center;justify-content:space-between;margin-top:16px}
   .navbtn{background:transparent;border:1px solid rgba(230,201,135,.5);border-radius:999px;color:#F0D48A;padding:11px 16px;cursor:pointer;display:inline-flex;align-items:center}
@@ -128,7 +144,6 @@
   #bgAudio{display:none}
   @media(max-width:680px){
     .page,.turn-sheet .turn-inner{padding:32px 26px 44px}
-    .letter{font-size:17px}
   }
   @media (max-height:720px){
     .page,.turn-sheet .turn-inner{padding:28px 24px 24px}
@@ -324,21 +339,11 @@
     if (count) count.textContent = 'Câu hỏi ' + (next + 1) + ' / ' + prompts.length;
     restorePromptState(box.closest('.page') || box.parentElement);
   }
-  // Thu nhỏ toàn bộ trang vừa khung khi nội dung cao hơn khung, để không phải cuộn và không bị cắt.
-  function fitPage(el){
-    if (!el) return;
-    el.style.transform = '';
-    const avail = el.clientHeight, full = el.scrollHeight;
-    if (avail > 0 && full > avail) {
-      el.style.transform = 'scale(' + Math.max(0.4, avail / full) + ')';
-      el.style.transformOrigin = 'top center';
-    }
-  }
-  function fitAll(){ fitPage(pageEl); if (sheet.style.display === 'block') fitPage(sheetInner); }
+  // Không thu nhỏ toàn trang nữa: khung sách ôm sát nội dung, trang dài bao nhiêu thì khung cao bấy nhiêu, không còn trang co nhỏ nổi trong khung navy.
   const pageEl = $('page'), sheet = $('turnSheet'), sheetInner = $('turnInner');
   function render(){
     pageEl.innerHTML = pages[current].html;
-    restorePromptState(pageEl); fitAll();
+    restorePromptState(pageEl);
     pageEl.classList.remove('page-in'); void pageEl.offsetWidth; pageEl.classList.add('page-in');
     $('progressBar').style.width = ((current + 1) / pages.length * 100) + '%';
     pageEl.classList.toggle('is-cover', !!pages[current].cover);
@@ -348,7 +353,7 @@
   }
   function setSheetFor(index){
     sheetInner.innerHTML = pages[index].html;
-    restorePromptState(sheetInner); fitPage(sheetInner);
+    restorePromptState(sheetInner);
     sheet.classList.toggle('is-cover', !!pages[index].cover);
   }
   function goTo(index, fromCover){
@@ -360,7 +365,6 @@
       setSheetFor(current);
       sheet.style.transition = 'none'; sheet.style.transform = 'rotateY(0deg)'; sheet.style.display = 'block';
       void sheet.offsetWidth;
-      fitPage(sheetInner);
       sheet.style.transition = 'transform 1.5s cubic-bezier(.22,1,.36,1)'; sheet.style.transform = 'rotateY(-180deg)';
       setTimeout(() => { current = index; render(); }, 750);
       setTimeout(() => { sheet.style.display = 'none'; sheet.style.transform = 'rotateY(0deg)'; animating = false; }, 1550);
@@ -369,7 +373,6 @@
       setSheetFor(index);
       sheet.style.transition = 'none'; sheet.style.transform = 'rotateY(-180deg)'; sheet.style.display = 'block';
       void sheet.offsetWidth;
-      fitPage(sheetInner);
       sheet.style.transition = 'transform 1.5s cubic-bezier(.22,1,.36,1)'; sheet.style.transform = 'rotateY(0deg)';
       setTimeout(() => { current = index; render(); sheet.style.display = 'none'; sheet.style.transform = 'rotateY(0deg)'; animating = false; }, 1550);
     }
@@ -561,8 +564,6 @@
   setInterval(tick, 1000);
 
   render(); tick();
-  window.addEventListener('resize', fitAll);
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitAll);
 </script>
 <div class="rsvp-modal" id="rsvpModal" role="dialog" aria-modal="true" aria-labelledby="rsvpTitle">
   <div class="rsvp-card">
