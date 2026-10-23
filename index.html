@@ -59,6 +59,11 @@
   .letter{font-size:18px;text-align:justify}
   .letter p{margin:0 0 16px}
   .detail{display:flex;align-items:center;gap:14px;justify-content:center;margin:14px 0;font-size:18px}
+  .count{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:560px;margin:26px auto 0}
+  .count div{background:var(--navy);color:#fff;padding:16px 6px;text-align:center;border:1px solid rgba(230,201,135,.35)}
+  .count b{display:block;font-family:"Playfair Display",serif;font-size:clamp(26px,5vw,38px);line-height:1;color:var(--gold-light)}
+  .count span{font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:.85}
+  .count-label{text-align:center;color:var(--muted);margin:24px 0 0;font-size:14px;letter-spacing:.14em;text-transform:uppercase}
   .detail .icon{width:24px;height:24px}
   .timeline{max-width:600px;margin:0 auto;border-left:1px solid var(--line);padding-left:28px}
   .timeline article{position:relative;padding:0 0 26px}
@@ -146,6 +151,13 @@
         <div class="detail"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span><strong>9 Giờ 00 — Thứ Sáu, Ngày 01/01/2027</strong></span></div>
         <div class="detail"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21c-4-4.5-7-7.8-7-11a7 7 0 0 1 14 0c0 3.2-3 6.5-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span><strong>Trường THPT Số 1 Mường Khương</strong></span></div>
         <div class="detail"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1 4 2 6 2s6-1 6-2v-5"/><path d="M22 10v5"/></svg><span><strong>Lớp 12A1 — 2012 — 2027</strong></span></div>
+        <p class="count-label">Đếm Ngược Tới Ngày Hội Ngộ</p>
+        <div class="count" aria-live="off">
+          <div><b id="d">—</b><span>Ngày</span></div>
+          <div><b id="h">—</b><span>Giờ</span></div>
+          <div><b id="m">—</b><span>Phút</span></div>
+          <div><b id="s">—</b><span>Giây</span></div>
+        </div>
         <p class="center" style="color:var(--muted);margin-top:26px">Sự hiện diện của bạn là món quà ý nghĩa nhất<br>cho ngày hội ngộ này.</p>`
     },
     {
@@ -292,7 +304,21 @@
     }
   });
 
-  render();
+  // Đếm ngược tới 9 giờ 00 ngày 01/01/2027, chạy lại mỗi giây và chỉ cập nhật khi trang Lời mời đang hiển thị.
+  const targetDate = new Date('2027-01-01T09:00:00+07:00');
+  function tick(){
+    const d = $('d'); if (!d) return;
+    let diff = Math.max(0, targetDate - new Date());
+    const days = Math.floor(diff / 86400000); diff -= days * 86400000;
+    const hrs = Math.floor(diff / 3600000); diff -= hrs * 3600000;
+    const mins = Math.floor(diff / 60000); diff -= mins * 60000;
+    const secs = Math.floor(diff / 1000);
+    d.textContent = days; $('h').textContent = String(hrs).padStart(2,'0');
+    $('m').textContent = String(mins).padStart(2,'0'); $('s').textContent = String(secs).padStart(2,'0');
+  }
+  setInterval(tick, 1000);
+
+  render(); tick();
 </script>
 </body>
 </html>

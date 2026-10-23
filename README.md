@@ -16,7 +16,8 @@ Quyển sách thiệp mời kỷ niệm 15 năm ngày ra trường của Lớp 1
 - Thao tác: bấm mũi tên Trang Trước/Trang Sau, bấm vào nửa trái/phải của sách, vuốt sang trái/phải trên điện thoại, hoặc dùng phím mũi tên.
 - Các trang, theo đúng thứ tự: 1 Bìa sách, 2 Lời mở đầu, 3 Lời mời (thời gian và địa điểm), 4 Hành trình 15 năm, 5 Trang cuối — Hẹn gặp lại và Xác nhận tham dự.
 - Xác nhận tham dự chỉ có ở trang cuối, không có ở các trang trước.
-- Đã bỏ các chi tiết thừa so với bản trước: đếm ngược, nút chỉ đường, nút thêm vào lịch, chấm chọn trang, dòng hướng dẫn dài, các thẻ thông tin rời rạc.
+- Đếm ngược vẫn giữ lại ở trang Lời mời, đếm trực tiếp tới 9 giờ 00 ngày 01/01/2027.
+- Đã bỏ các chi tiết thừa so với bản trước: nút chỉ đường, nút thêm vào lịch, chấm chọn trang, dòng hướng dẫn dài, các thẻ thông tin rời rạc.
 - Icon dạng flat: icon SVG nét mảnh, không dùng emoji, không dùng hình ảnh.
 
 ## Nhạc nền
