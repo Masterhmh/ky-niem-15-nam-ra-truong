@@ -222,7 +222,6 @@
         <p><strong>Trường THPT Số 1 Mường Khương</strong><br>2012 — 2027</p>
         <p>Thứ Sáu • 01/01/2027 • 9 Giờ 00</p>
         <div class="actions"><button class="btn gold" type="button" data-action="open-book">Xem Thiệp Mời</button></div>
-        <p style="font-size:13px;color:#D9C9A8;margin-top:10px">Nhạc sẽ tự phát khi bạn chạm vào thiệp.</p>
       </div>`
     },
     {
@@ -440,31 +439,47 @@
     startFallback();
   }
   function stopMusic(){
-    musicOn = false; setMusicLabel(); stopFallback();
+    musicOn = false; try { mutedAutoplay = false; } catch(e) {} setMusicLabel(); stopFallback();
     const audio = $('bgAudio');
     if (audio) { try { audio.pause(); } catch(e) {} }
   }
-  $('musicBtn').addEventListener('click', () => { musicAutoStarted = true; musicOn ? stopMusic() : startMusic(); });
+  $('musicBtn').addEventListener('click', () => { if (mutedAutoplay) { unmuteAutoplay(); return; } musicAutoStarted = true; musicOn ? stopMusic() : startMusic(); });
 
   // Mở trang lên là thử chạy nhạc luôn; trình duyệt thường chặn phát có tiếng khi chưa có thao tác,
   // nên nếu lần thử đầu bị chặn thì nhạc sẽ tự bắt đầu ở thao tác chạm/bấm/phím đầu tiên trên trang,
   // không cần chờ tới khi mở sách. Bấm nút nhạc thì không tính là thao tác tự bắt đầu này.
+  let mutedAutoplay = false;
+  function unmuteAutoplay(){
+    const audio = $('bgAudio');
+    if (!audio || !mutedAutoplay) return;
+    mutedAutoplay = false;
+    audio.muted = false; audio.volume = 0.5;
+    if (!audio.paused) { musicOn = true; musicAutoStarted = true; setMusicLabel(); }
+  }
   function attemptAutoplay(){
     const audio = $('bgAudio');
     if (!audio || musicOn) return;
-    audio.volume = 0.5;
+    audio.muted = false; audio.volume = 0.5;
     const played = audio.play();
     if (played && played.then) {
-      played.then(() => { musicOn = true; musicAutoStarted = true; setMusicLabel(); }).catch(() => {});
+      played.then(() => { musicOn = true; musicAutoStarted = true; setMusicLabel(); }).catch(() => {
+        // Bị chặn phát có tiếng: phát tắt tiếng trước (trình duyệt thường cho phép), rồi tự bật tiếng lại ngay sau đó.
+        audio.muted = true;
+        const mutedPlayed = audio.play();
+        if (mutedPlayed && mutedPlayed.then) {
+          mutedPlayed.then(() => { mutedAutoplay = true; setTimeout(unmuteAutoplay, 400); }).catch(() => {});
+        }
+      });
     } else { musicOn = true; musicAutoStarted = true; setMusicLabel(); }
   }
   document.addEventListener('pointerdown', e => {
     if (e.target.closest('#musicBtn')) return;
+    if (mutedAutoplay) { unmuteAutoplay(); return; }
     if (!musicOn) { musicAutoStarted = true; startMusic(); }
   }, { once: true, passive: true });
-  document.addEventListener('keydown', () => { if (!musicOn) { musicAutoStarted = true; startMusic(); } }, { once: true });
-  document.addEventListener('touchstart', () => { if (!musicOn) { musicAutoStarted = true; startMusic(); } }, { once: true, passive: true });
-  document.addEventListener('wheel', () => { if (!musicOn) { musicAutoStarted = true; startMusic(); } }, { once: true, passive: true });
+  document.addEventListener('keydown', () => { if (mutedAutoplay) { unmuteAutoplay(); return; } if (!musicOn) { musicAutoStarted = true; startMusic(); } }, { once: true });
+  document.addEventListener('touchstart', () => { if (mutedAutoplay) { unmuteAutoplay(); return; } if (!musicOn) { musicAutoStarted = true; startMusic(); } }, { once: true, passive: true });
+  document.addEventListener('wheel', () => { if (mutedAutoplay) { unmuteAutoplay(); return; } if (!musicOn) { musicAutoStarted = true; startMusic(); } }, { once: true, passive: true });
   attemptAutoplay();
 
   function celebrate(){
