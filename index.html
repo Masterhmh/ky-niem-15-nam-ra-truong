@@ -26,7 +26,7 @@
   .book{position:relative;background:linear-gradient(90deg,#0B1526,#14213D 12%,#0E1B33);padding:13px;border:1px solid rgba(230,201,135,.5);box-shadow:0 40px 90px rgba(0,0,0,.5)}
   .book:before{content:"";position:absolute;inset:7px;border:1px solid rgba(230,201,135,.35);pointer-events:none;z-index:30}
   .book-stage{position:relative;height:clamp(640px, calc(100svh - 170px), 780px);overflow:hidden;perspective:1800px}
-  .page{position:relative;background:var(--paper);padding:54px 48px 46px;height:100%;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(197,160,89,.35)}
+  .page{position:relative;background:var(--paper);padding:48px 48px 56px;height:100%;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(197,160,89,.35)}
   .page:before{content:"";position:absolute;inset:12px;border:1px solid rgba(197,160,89,.25);pointer-events:none}
   .page:after{content:"";position:absolute;top:0;bottom:0;left:0;width:10px;background:linear-gradient(90deg,rgba(20,33,61,.16),transparent);pointer-events:none}
   .page.is-cover{background:linear-gradient(180deg,#0E1B33,#1B2F55);color:#F6F1E7}
@@ -44,7 +44,7 @@
 
   h2.sec{font-family:"Playfair Display",serif;font-size:clamp(28px,4vw,38px);line-height:1.3;margin:0 0 10px;text-align:center;font-weight:700}
   .sec-sub{text-align:center;color:var(--muted);margin:0 0 28px}
-  .ornament{display:flex;align-items:center;gap:14px;justify-content:center;margin:26px auto;color:var(--gold)}
+  .ornament{display:flex;align-items:center;gap:14px;justify-content:center;margin:18px auto;color:var(--gold)}
   .ornament:before,.ornament:after{content:"";height:1px;width:64px;background:var(--line)}
   .btn{display:inline-flex;align-items:center;gap:9px;border:0;cursor:pointer;background:var(--navy);color:#fff;padding:14px 26px;border-radius:2px;font-weight:600;letter-spacing:.4px;transition:transform .3s ease,box-shadow .3s ease;text-decoration:none;position:relative;overflow:hidden}
   .btn:hover{transform:translateY(-2px);box-shadow:0 16px 32px rgba(14,27,51,.28)}
@@ -52,13 +52,13 @@
   .btn.gold:after{content:"";position:absolute;top:0;left:-70%;width:45%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);transition:left .6s ease}
   .btn.gold:hover:after{left:130%}
   .btn.light{background:#fff;color:var(--navy);border:1px solid var(--line)}
-  .cover{text-align:center;padding-top:24px}
+  .cover{text-align:center;padding-top:48px}
   .cover p{text-wrap:balance}
   .seal{width:76px;height:76px;margin:0 auto 14px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,#F0D48A,#C5A059 60%,#8C6D2E);color:#fff;font-family:"Playfair Display",serif;font-size:28px;font-weight:900;box-shadow:0 14px 28px rgba(140,109,46,.4)}
   .cover .big{font-size:clamp(90px,20vw,150px);line-height:.85;margin:10px 0 0;font-weight:900}
   .cover h1{font-size:clamp(30px,5.5vw,48px);line-height:1.25;margin:10px 0;font-weight:700;text-wrap:balance}
-  .letter{font-size:17px;line-height:1.75;text-align:left}
-  .letter p{margin:0 0 14px}
+  .letter{font-size:17px;line-height:1.68;text-align:justify;text-align-last:left}
+  .letter p{margin:0 0 12px}
   .detail{display:flex;align-items:flex-start;gap:14px;justify-content:flex-start;max-width:520px;margin:16px auto;font-size:18px}
   .detail-text span{display:block;line-height:1.55;text-wrap:balance}
   .detail-text .d2{font-size:16px;color:var(--muted)}
@@ -71,7 +71,7 @@
   .count-label{text-align:center;color:var(--muted);margin:24px 0 0;font-size:14px;letter-spacing:.14em;text-transform:uppercase}
   .detail .icon{width:24px;height:24px}
   .timeline{max-width:600px;margin:0 auto;border-left:1px solid var(--line);padding-left:28px}
-  .timeline article{position:relative;padding:0 0 26px}
+  .timeline article{position:relative;padding:0 0 20px}
   .timeline article:before{content:"";position:absolute;left:-35px;top:7px;width:13px;height:13px;background:var(--gold);border:2px solid #fff;box-shadow:0 0 0 1px var(--line);transform:rotate(45deg)}
   .timeline h4{margin:0;font-size:18px;text-wrap:balance}
   .timeline p{margin:4px 0 0;color:var(--muted)}
@@ -85,12 +85,12 @@
   .navbtn:disabled{opacity:.3;cursor:default}
   .navbtn .icon{width:20px;height:20px;stroke:currentColor}
   .page-ind{color:#D9C48A;font-size:14px;letter-spacing:.18em}
-  #musicBtn{position:fixed;right:16px;bottom:16px;z-index:50;display:none;align-items:center;gap:8px;background:var(--navy);color:#fff;border:1px solid rgba(230,201,135,.5);padding:11px 16px;border-radius:999px;cursor:pointer;font-weight:600;box-shadow:0 14px 30px rgba(14,27,51,.4)}
-  #musicBtn.show{display:inline-flex}
+  .music-row{display:flex;justify-content:center;margin-top:14px}
+  #musicBtn{display:inline-flex;align-items:center;gap:8px;background:var(--navy);color:#fff;border:1px solid rgba(230,201,135,.5);padding:11px 20px;border-radius:999px;cursor:pointer;font-weight:600;box-shadow:0 14px 30px rgba(14,27,51,.4)}
   #musicBtn .icon{width:18px;height:18px;stroke:var(--gold-light)}
   #ytPlayer{position:fixed;left:0;bottom:0;width:1px;height:1px;opacity:0;pointer-events:none}
   @media(max-width:680px){
-    .page,.turn-sheet .turn-inner{padding:38px 26px 32px}
+    .page,.turn-sheet .turn-inner{padding:32px 26px 44px}
     .letter{font-size:17px}
   }
   @media(prefers-reduced-motion:reduce){
@@ -111,12 +111,14 @@
     <div class="page-ind" id="pageInd">1 / 8</div>
     <button class="navbtn" id="nextBtn" type="button" aria-label="Trang sau"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
   </div>
+  <div class="music-row">
+    <button id="musicBtn" type="button" aria-label="Bật hoặc tắt nhạc nền">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+      <span id="musicLabel">Bật Nhạc</span>
+    </button>
+  </div>
 </div>
 
-<button id="musicBtn" type="button" aria-label="Bật hoặc tắt nhạc nền">
-  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
-  <span id="musicLabel">Tắt Nhạc</span>
-</button>
 <div id="ytPlayer"></div>
 
 <script src="https://www.youtube.com/iframe_api"></script>
@@ -126,7 +128,6 @@
     {
       cover: true,
       html: `<div class="cover">
-        <div class="seal">15</div>
         <div class="small">Trân Trọng Kính Mời • Lớp 12A1</div>
         <div class="big serif gold-text">15</div>
         <div class="serif" style="font-size:20px;letter-spacing:.42em">NĂM</div>
@@ -141,9 +142,9 @@
       html: `<h2 class="sec">Lời Mở Đầu</h2>
         <div class="ornament"><span>◆</span></div>
         <div class="letter">
-          <p>Mười lăm năm trước, chúng ta cùng ngồi dưới một mái trường, cùng một lớp học, cùng những buổi sáng đến trường và những buổi chiều tan học vội vã.</p>
-          <p>Thời gian đưa mỗi người đi một hướng khác nhau. Có người ở lại quê hương, có người lập nghiệp nơi xa, có người đã thay đổi rất nhiều, nhưng có một điều không thay đổi: chúng ta vẫn là Lớp 12A1 của nhau.</p>
-          <p>Cuốn sách nhỏ này là lời hẹn trở về. Hãy mở từng trang thật chậm, như cách chúng ta đã từng lật từng trang vở năm xưa, để đến trang cuối cùng, chúng ta lại gặp nhau.</p>
+          <p>Mười lăm năm trước, chúng ta cùng bước vào một lớp học, cùng ngồi dưới một mái trường, cùng lớn lên trong những buổi sáng đến lớp và những buổi chiều tan học vội vã.</p>
+          <p>Thời gian đưa mỗi người đi một hướng khác nhau. Có người ở lại quê hương, có người lập nghiệp nơi xa, nhưng có một điều không thay đổi: chúng ta vẫn là Lớp 12A1 của nhau.</p>
+          <p>Cuốn sách này là lời hẹn trở về. Hãy mở từng trang thật chậm, để đến trang cuối cùng, chúng ta lại gặp nhau.</p>
           <p style="text-align:right"><em>Thân gửi Lớp 12A1.</em></p>
         </div>`
     },
@@ -151,27 +152,27 @@
       html: `<h2 class="sec">Lớp Học Năm Ấy</h2>
         <div class="ornament"><span>◆</span></div>
         <div class="letter">
-          <p>Buổi sáng, tiếng trống trường vang lên, cả lớp vội vã vào chỗ ngồi. Bảng đen còn thơm mùi phấn mới, ngoài cửa sổ nắng vừa lên.</p>
-          <p>Giờ ra chơi, sân trường rộn ràng tiếng cười. Những câu chuyện chưa kể hết đã phải quay lại lớp, hẹn nhau kể tiếp vào giờ sau.</p>
-          <p>Có những bài học khó, những lần kiểm tra hồi hộp, nhưng ngồi cạnh nhau, mọi thứ đều nhẹ nhàng hơn rất nhiều.</p>
+          <p>Nhớ những buổi sáng đến lớp, tiếng trống trường vang lên, cả lớp vội vã vào chỗ ngồi, ánh nắng đầu ngày tràn qua cửa sổ, bảng đen còn thơm mùi phấn mới.</p>
+          <p>Giờ ra chơi, sân trường rộn ràng tiếng cười. Những câu chuyện chưa kể hết đã phải quay lại lớp, hẹn nhau kể tiếp vào giờ sau, như thể thời gian lúc ấy là vô tận.</p>
+          <p>Có những bài học khó, những lần kiểm tra hồi hộp, những lúc giận nhau rồi lại làm lành ngay trong ngày. Ngồi cạnh nhau, mọi thứ đều nhẹ nhàng hơn rất nhiều.</p>
         </div>`
     },
     {
       html: `<h2 class="sec">Mùa Hè Chia Tay</h2>
         <div class="ornament"><span>◆</span></div>
         <div class="letter">
-          <p>Mùa hè cuối cùng đến rất nhanh. Khi những ngày cuối năm học trôi qua, ai cũng hiểu rằng mình sắp phải xa nhau.</p>
-          <p>Ngày chia tay, ai cũng nói hẹn gặp lại, nhưng không ai biết lần gặp lại ấy phải đợi bao lâu.</p>
-          <p>Mỗi người mang theo một ước mơ, rời khỏi mái trường, mang theo cả một phần tuổi trẻ của nhau.</p>
+          <p>Mùa hè cuối cùng đến rất nhanh. Khi những ngày cuối năm học trôi qua, ai cũng hiểu rằng mình sắp phải xa nhau, xa mái trường, xa những người bạn đã gắn bó suốt bao năm.</p>
+          <p>Ngày chia tay, không ai nói được nhiều. Chỉ một cái ôm, một lời hẹn gặp lại, và một nỗi buồn lặng lẽ mà mãi sau này mới hiểu hết.</p>
+          <p>Mỗi người mang theo một ước mơ, rời khỏi mái trường, mang theo cả một phần tuổi trẻ của nhau. Và từ đó, chúng ta bắt đầu một hành trình dài mang tên trưởng thành.</p>
         </div>`
     },
     {
       html: `<h2 class="sec">Mười Lăm Năm Sau</h2>
         <div class="ornament"><span>◆</span></div>
         <div class="letter">
-          <p>Mười lăm năm trôi qua, tóc đã khác, cuộc sống đã khác, nhưng mỗi khi nghe một bài hát cũ, lòng lại trở về lớp học năm ấy.</p>
-          <p>Có những người bạn lâu rồi chưa gặp, có những cái tên chỉ cần nhắc đến là cả một thời học trò ùa về.</p>
-          <p>Và rồi một ngày, chúng ta nhận ra: điều quý nhất không phải là thời gian đã qua, mà là những người đã cùng mình đi qua thời gian ấy.</p>
+          <p>Mười lăm năm trôi qua, tóc đã khác, cuộc sống đã khác, nhưng mỗi khi nghe một bài hát cũ, lòng lại trở về lớp học năm ấy, nơi có những người bạn chưa bao giờ quên.</p>
+          <p>Có những người bạn lâu rồi chưa gặp, có những cái tên chỉ cần nhắc đến là cả một thời học trò ùa về, với tiếng cười, với nước mắt, với những ước mơ còn dang dở.</p>
+          <p>Và rồi một ngày, chúng ta nhận ra: điều quý nhất không phải là thời gian đã qua, mà là những người đã cùng mình đi qua thời gian ấy. Vì vậy, ngày hội ngộ này mới thật đáng chờ đợi.</p>
         </div>`
     },
     {
@@ -250,7 +251,7 @@
       sheet.style.transition = 'transform 1.4s cubic-bezier(.65,0,.35,1)'; sheet.style.transform = 'rotateY(0deg)';
       setTimeout(() => { current = index; render(); sheet.style.display = 'none'; sheet.style.transform = 'rotateY(0deg)'; animating = false; }, 1450);
     }
-    if (fromCover) startMusic();
+    if (!musicAutoStarted && index >= 1) { musicAutoStarted = true; startMusic(); }
   }
   function next(){ goTo(current + 1); }
   function prev(){ goTo(current - 1); }
@@ -277,7 +278,7 @@
   });
 
   // Nhạc nền phát sau khi mở sách, có nút Tắt/Bật.
-  let ytPlayer = null, ytReady = false, musicOn = false;
+  let ytPlayer = null, ytReady = false, musicOn = false, musicAutoStarted = false;
   let audioCtx = null, musicTimer = null, noteIndex = 0;
   const melody = [523.25, 587.33, 659.25, 783.99, 880.00, 783.99, 659.25, 587.33];
   function playNote(freq){
@@ -286,7 +287,7 @@
     osc.type = 'triangle'; osc.frequency.value = freq;
     const now = audioCtx.currentTime;
     gain.gain.setValueAtTime(0, now);
-    gain.gain.linearRampToValueAtTime(0.045, now + 0.45);
+    gain.gain.linearRampToValueAtTime(0.07, now + 0.45);
     gain.gain.exponentialRampToValueAtTime(0.0008, now + 2.0);
     osc.connect(gain); gain.connect(audioCtx.destination);
     osc.start(now); osc.stop(now + 2.1);
@@ -302,10 +303,10 @@
   function setMusicLabel(){ $('musicLabel').textContent = musicOn ? 'Tắt Nhạc' : 'Bật Nhạc'; }
   function startMusic(){
     if (musicOn) return;
-    musicOn = true; setMusicLabel(); $('musicBtn').classList.add('show');
-    if (ytReady && ytPlayer) { try { ytPlayer.setVolume(30); ytPlayer.playVideo(); return; } catch(e) {} }
+    musicOn = true; setMusicLabel();
+    if (ytReady && ytPlayer) { try { ytPlayer.setVolume(50); ytPlayer.playVideo(); return; } catch(e) {} }
     startFallback();
-    setTimeout(() => { if (musicOn && ytReady && ytPlayer) { try { ytPlayer.setVolume(30); ytPlayer.playVideo(); stopFallback(); } catch(e) {} } }, 6000);
+    setTimeout(() => { if (musicOn && ytReady && ytPlayer) { try { ytPlayer.setVolume(50); ytPlayer.playVideo(); stopFallback(); } catch(e) {} } }, 6000);
   }
   function stopMusic(){
     musicOn = false; setMusicLabel(); stopFallback();
@@ -316,13 +317,13 @@
       height: '1', width: '1', videoId: 'Q6IrWD7cFUI',
       playerVars: { autoplay: 0, controls: 0, loop: 1, playlist: 'Q6IrWD7cFUI', rel: 0 },
       events: {
-        onReady: function(){ ytReady = true; if (musicOn) { ytPlayer.setVolume(30); ytPlayer.playVideo(); stopFallback(); } },
+        onReady: function(){ ytReady = true; if (musicOn) { ytPlayer.setVolume(50); ytPlayer.playVideo(); stopFallback(); } },
         onError: function(){ if (musicOn) startFallback(); },
         onStateChange: function(e){ if (e.data === 0 && musicOn) { try { ytPlayer.playVideo(); } catch(err) {} } }
       }
     });
   };
-  $('musicBtn').addEventListener('click', () => { musicOn ? stopMusic() : startMusic(); });
+  $('musicBtn').addEventListener('click', () => { musicAutoStarted = true; musicOn ? stopMusic() : startMusic(); });
 
   document.addEventListener('click', e => {
     const act = e.target.closest('[data-action]');
