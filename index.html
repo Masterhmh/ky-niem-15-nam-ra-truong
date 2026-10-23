@@ -14,7 +14,7 @@
     --gold:#C5A059; --gold-light:#E6C987; --gold-dark:#8C6D2E; --line:rgba(197,160,89,.45); --muted:#5D6B82;
   }
   *{box-sizing:border-box}
-  body{margin:0;background:radial-gradient(1000px 600px at 50% 0%,#24365F,transparent 60%),linear-gradient(180deg,#0E1B33,#16294D 55%,#0E1B33);color:var(--ink);font-family:"Be Vietnam Pro",system-ui,-apple-system,sans-serif;line-height:1.8;min-height:100vh}
+  body{margin:0;background:radial-gradient(700px 420px at 50% -80px,rgba(230,201,135,.28),transparent 60%),radial-gradient(1000px 600px at 50% 0%,#24365F,transparent 60%),linear-gradient(180deg,#0E1B33,#16294D 55%,#0E1B33);color:var(--ink);font-family:"Be Vietnam Pro",system-ui,-apple-system,sans-serif;line-height:1.8;min-height:100vh}
   a{color:inherit}
   .serif{font-family:"Playfair Display",Georgia,serif}
   .gold-text{background:linear-gradient(105deg,#8C6D2E,#C5A059 32%,#F0D48A 52%,#C5A059 72%,#8C6D2E);background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s ease-in-out infinite}
@@ -23,11 +23,11 @@
   .icon{width:32px;height:32px;stroke:var(--gold-dark);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none}
   .wrap{max-width:760px;margin:0 auto;padding:28px 18px 56px}
 
-  .book{position:relative;background:linear-gradient(90deg,#0B1526,#14213D 12%,#0E1B33);padding:13px;border:1px solid rgba(230,201,135,.5);box-shadow:0 40px 90px rgba(0,0,0,.5)}
-  .book:before{content:"";position:absolute;inset:7px;border:1px solid rgba(230,201,135,.35);pointer-events:none;z-index:30}
-  .book-stage{position:relative;height:clamp(640px, calc(100svh - 170px), 780px);overflow:hidden;perspective:1800px}
-  .page{position:relative;background:var(--paper);padding:48px 48px 56px;height:100%;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(197,160,89,.35)}
-  .page:before{content:"";position:absolute;inset:12px;border:1px solid rgba(197,160,89,.25);pointer-events:none}
+  .book{position:relative;background:linear-gradient(135deg,#0B1526,#1B2F55 55%,#0E1B33);padding:13px;border:1px solid rgba(230,201,135,.5);border-radius:22px;box-shadow:0 30px 70px rgba(0,0,0,.45)}
+  .book:before{content:"";position:absolute;inset:7px;border:1px solid rgba(230,201,135,.35);border-radius:16px;pointer-events:none;z-index:30}
+  .book-stage{position:relative;height:clamp(640px, calc(100svh - 170px), 780px);overflow:hidden;perspective:2000px;cursor:grab}
+  .page{position:relative;background:linear-gradient(180deg,#FFFEFA,#FFFDF8 60%,#FBF3DF);padding:48px 48px 56px;height:100%;overflow:hidden;border-radius:14px;box-shadow:inset 0 0 0 1px rgba(197,160,89,.35), inset 0 -30px 60px rgba(197,160,89,.08)}
+  .page:before{content:"";position:absolute;inset:12px;border:1px solid rgba(197,160,89,.25);border-radius:10px;pointer-events:none}
   .page:after{content:"";position:absolute;top:0;bottom:0;left:0;width:10px;background:linear-gradient(90deg,rgba(20,33,61,.16),transparent);pointer-events:none}
   .page.is-cover{background:linear-gradient(180deg,#0E1B33,#1B2F55);color:#F6F1E7}
   .page.is-cover .small{color:#D9C48A}
@@ -35,9 +35,10 @@
   .page.is-cover strong{color:#FFFDF8}
 
   /* Tờ giấy lật thật: xoay quanh gáy trái, chậm 1,4 giây, có bóng đổ ở mép. */
-  .turn-sheet{position:absolute;inset:0;z-index:20;display:none;transform-origin:left center;transform:rotateY(0deg);transition:transform 1.4s cubic-bezier(.65,0,.35,1);backface-visibility:hidden;will-change:transform}
-  .turn-sheet .turn-inner{position:absolute;inset:0;background:var(--paper);padding:54px 48px 46px;box-shadow:20px 0 50px rgba(0,0,0,.35)}
-  .turn-sheet .turn-inner:before{content:"";position:absolute;inset:12px;border:1px solid rgba(197,160,89,.25);pointer-events:none}
+  .turn-sheet{position:absolute;inset:0;z-index:20;display:none;transform-origin:left center;transform:rotateY(0deg);transition:transform 1.5s cubic-bezier(.22,1,.36,1);backface-visibility:hidden;will-change:transform}
+  .turn-sheet{border-radius:14px;overflow:hidden}
+  .turn-sheet .turn-inner{position:absolute;inset:0;background:linear-gradient(180deg,#FFFEFA,#FFFDF8 60%,#FBF3DF);padding:48px 48px 56px;border-radius:14px;box-shadow:24px 0 60px rgba(0,0,0,.35)}
+  .turn-sheet .turn-inner:before{content:"";position:absolute;inset:12px;border:1px solid rgba(197,160,89,.25);border-radius:10px;pointer-events:none}
   .turn-sheet .turn-inner:after{content:"";position:absolute;top:0;bottom:0;right:0;width:42px;background:linear-gradient(90deg,transparent,rgba(20,33,61,.28));pointer-events:none}
   .turn-sheet.is-cover .turn-inner{background:linear-gradient(180deg,#0E1B33,#1B2F55);color:#F6F1E7}
   .turn-sheet.is-cover .turn-inner .small{color:#D9C48A}
@@ -46,12 +47,24 @@
   .sec-sub{text-align:center;color:var(--muted);margin:0 0 28px}
   .ornament{display:flex;align-items:center;gap:14px;justify-content:center;margin:18px auto;color:var(--gold)}
   .ornament:before,.ornament:after{content:"";height:1px;width:64px;background:var(--line)}
-  .btn{display:inline-flex;align-items:center;gap:9px;border:0;cursor:pointer;background:var(--navy);color:#fff;padding:14px 26px;border-radius:2px;font-weight:600;letter-spacing:.4px;transition:transform .3s ease,box-shadow .3s ease;text-decoration:none;position:relative;overflow:hidden}
+  .btn{display:inline-flex;align-items:center;gap:9px;border:0;cursor:pointer;background:var(--navy);color:#fff;padding:14px 26px;border-radius:999px;font-weight:600;letter-spacing:.4px;transition:transform .3s ease,box-shadow .3s ease;text-decoration:none;position:relative;overflow:hidden}
   .btn:hover{transform:translateY(-2px);box-shadow:0 16px 32px rgba(14,27,51,.28)}
   .btn.gold{background:linear-gradient(105deg,#8C6D2E,#C5A059,#E6C987);color:#14213D}
   .btn.gold:after{content:"";position:absolute;top:0;left:-70%;width:45%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);transition:left .6s ease}
   .btn.gold:hover:after{left:130%}
   .btn.light{background:#fff;color:var(--navy);border:1px solid var(--line)}
+  @keyframes pageIn{from{opacity:.35}to{opacity:1}}
+  .page-in{animation:pageIn .6s ease}
+  .chapter{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-dark);font-weight:600;text-align:center;margin:0 0 6px}
+  .prompt-box{margin-top:20px;border:1px solid var(--line);border-radius:14px;padding:14px 16px;background:rgba(197,160,89,.08);text-align:center}
+  .prompt-btn{background:transparent;border:0;color:var(--gold-dark);font-weight:700;cursor:pointer;font-size:14px;letter-spacing:.06em}
+  .prompt-text{margin:8px 0 0;font-size:15px;line-height:1.6;text-wrap:balance;color:var(--ink)}
+  .progress{height:3px;background:rgba(230,201,135,.25);border-radius:999px;margin-top:16px;overflow:hidden}
+  .progress div{height:100%;background:linear-gradient(90deg,#8C6D2E,#E6C987);border-radius:999px;transition:width .6s ease}
+  .dust{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:1;opacity:.35}
+  .dust i{position:absolute;bottom:-12px;width:4px;height:4px;border-radius:50%;background:#E6C987;animation:rise 14s linear infinite}
+  .dust i:nth-child(1){left:8%;animation-delay:0s}.dust i:nth-child(2){left:22%;animation-delay:3s;animation-duration:17s}.dust i:nth-child(3){left:38%;animation-delay:6s}.dust i:nth-child(4){left:55%;animation-delay:1s;animation-duration:19s}.dust i:nth-child(5){left:70%;animation-delay:8s}.dust i:nth-child(6){left:85%;animation-delay:4s;animation-duration:16s}.dust i:nth-child(7){left:93%;animation-delay:10s}.dust i:nth-child(8){left:47%;animation-delay:12s}
+  @keyframes rise{from{transform:translateY(0);opacity:0}15%{opacity:1}to{transform:translateY(-105vh);opacity:0}}
   .cover{text-align:center;padding-top:48px}
   .cover p{text-wrap:balance}
   .seal{width:76px;height:76px;margin:0 auto 14px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,#F0D48A,#C5A059 60%,#8C6D2E);color:#fff;font-family:"Playfair Display",serif;font-size:28px;font-weight:900;box-shadow:0 14px 28px rgba(140,109,46,.4)}
@@ -81,7 +94,7 @@
   #rsvpMsg{margin-top:16px;font-weight:600;color:#1F6B3A;min-height:24px;text-align:center;text-wrap:balance}
 
   .book-nav{display:flex;align-items:center;justify-content:space-between;margin-top:16px}
-  .navbtn{background:transparent;border:1px solid rgba(230,201,135,.5);color:#F0D48A;padding:11px 16px;cursor:pointer;display:inline-flex;align-items:center}
+  .navbtn{background:transparent;border:1px solid rgba(230,201,135,.5);border-radius:999px;color:#F0D48A;padding:11px 16px;cursor:pointer;display:inline-flex;align-items:center}
   .navbtn:disabled{opacity:.3;cursor:default}
   .navbtn .icon{width:20px;height:20px;stroke:currentColor}
   .page-ind{color:#D9C48A;font-size:14px;letter-spacing:.18em}
@@ -95,10 +108,12 @@
   }
   @media(prefers-reduced-motion:reduce){
     .turn-sheet{transition:none}
+    .dust{display:none}
   }
 </style>
 </head>
 <body>
+<div class="dust" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
 <div class="wrap">
   <div class="book" id="book">
     <div class="book-stage" id="stage">
@@ -111,6 +126,7 @@
     <div class="page-ind" id="pageInd">1 / 8</div>
     <button class="navbtn" id="nextBtn" type="button" aria-label="Trang sau"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
   </div>
+  <div class="progress"><div id="progressBar" style="width:12.5%"></div></div>
   <div class="music-row">
     <button id="musicBtn" type="button" aria-label="Bật hoặc tắt nhạc nền">
       <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
@@ -139,7 +155,8 @@
       </div>`
     },
     {
-      html: `<h2 class="sec">Lời Mở Đầu</h2>
+      html: `<div class="chapter">Mở Đầu</div>
+        <h2 class="sec">Lời Mở Đầu</h2>
         <div class="ornament"><span>◆</span></div>
         <div class="letter">
           <p>Mười lăm năm trước, chúng ta cùng bước vào một lớp học, cùng ngồi dưới một mái trường, cùng lớn lên trong những buổi sáng đến lớp và những buổi chiều tan học vội vã.</p>
@@ -149,31 +166,37 @@
         </div>`
     },
     {
-      html: `<h2 class="sec">Lớp Học Năm Ấy</h2>
+      html: `<div class="chapter">Chương 1</div>
+        <h2 class="sec">Lớp Học Năm Ấy</h2>
         <div class="ornament"><span>◆</span></div>
         <div class="letter">
-          <p>Nhớ những buổi sáng đến lớp, tiếng trống trường vang lên, cả lớp vội vã vào chỗ ngồi, ánh nắng đầu ngày tràn qua cửa sổ, bảng đen còn thơm mùi phấn mới.</p>
-          <p>Giờ ra chơi, sân trường rộn ràng tiếng cười. Những câu chuyện chưa kể hết đã phải quay lại lớp, hẹn nhau kể tiếp vào giờ sau, như thể thời gian lúc ấy là vô tận.</p>
+          <p>Nhớ những buổi sáng đến lớp, tiếng trống trường vang lên, cả lớp vội vã vào chỗ ngồi, bảng đen còn thơm mùi phấn mới.</p>
+          <p>Giờ ra chơi, sân trường rộn ràng tiếng cười. Những câu chuyện chưa kể hết đã phải quay lại lớp, hẹn nhau kể tiếp vào giờ sau.</p>
           <p>Có những bài học khó, những lần kiểm tra hồi hộp, những lúc giận nhau rồi lại làm lành ngay trong ngày. Ngồi cạnh nhau, mọi thứ đều nhẹ nhàng hơn rất nhiều.</p>
-        </div>`
+        </div>
+        <div class="prompt-box"><button class="prompt-btn" type="button" data-i="0" data-prompts="Chỗ ngồi của bạn ở đâu — gần cửa sổ hay gần bảng?|Ai là người bạn cùng bàn mà bạn nhớ nhất?|Tiếng trống trường ngày ấy, bạn còn nhớ không?">Xem Câu Hỏi Khác</button><p class="prompt-text">Chỗ ngồi của bạn ở đâu — gần cửa sổ hay gần bảng?</p></div>`
     },
     {
-      html: `<h2 class="sec">Mùa Hè Chia Tay</h2>
+      html: `<div class="chapter">Chương 2</div>
+        <h2 class="sec">Mùa Hè Chia Tay</h2>
         <div class="ornament"><span>◆</span></div>
         <div class="letter">
-          <p>Mùa hè cuối cùng đến rất nhanh. Khi những ngày cuối năm học trôi qua, ai cũng hiểu rằng mình sắp phải xa nhau, xa mái trường, xa những người bạn đã gắn bó suốt bao năm.</p>
+          <p>Mùa hè cuối cùng đến rất nhanh. Khi những ngày cuối năm học trôi qua, ai cũng hiểu rằng mình sắp phải xa nhau, xa những người bạn đã gắn bó suốt bao năm.</p>
           <p>Ngày chia tay, không ai nói được nhiều. Chỉ một cái ôm, một lời hẹn gặp lại, và một nỗi buồn lặng lẽ mà mãi sau này mới hiểu hết.</p>
           <p>Mỗi người mang theo một ước mơ, rời khỏi mái trường, mang theo cả một phần tuổi trẻ của nhau. Và từ đó, chúng ta bắt đầu một hành trình dài mang tên trưởng thành.</p>
-        </div>`
+        </div>
+        <div class="prompt-box"><button class="prompt-btn" type="button" data-i="0" data-prompts="Ngày chia tay ấy, bạn đã nói gì với người bạn thân nhất?|Có điều gì đến giờ bạn vẫn chưa kịp nói không?|Mùa hè năm ấy, bạn mang theo ước mơ gì?">Xem Câu Hỏi Khác</button><p class="prompt-text">Ngày chia tay ấy, bạn đã nói gì với người bạn thân nhất?</p></div>`
     },
     {
-      html: `<h2 class="sec">Mười Lăm Năm Sau</h2>
+      html: `<div class="chapter">Chương 3</div>
+        <h2 class="sec">Mười Lăm Năm Sau</h2>
         <div class="ornament"><span>◆</span></div>
         <div class="letter">
           <p>Mười lăm năm trôi qua, tóc đã khác, cuộc sống đã khác, nhưng mỗi khi nghe một bài hát cũ, lòng lại trở về lớp học năm ấy, nơi có những người bạn chưa bao giờ quên.</p>
-          <p>Có những người bạn lâu rồi chưa gặp, có những cái tên chỉ cần nhắc đến là cả một thời học trò ùa về, với tiếng cười, với nước mắt, với những ước mơ còn dang dở.</p>
+          <p>Có những người bạn lâu rồi chưa gặp, có những cái tên chỉ cần nhắc đến là cả một thời học trò ùa về, với tiếng cười và những ước mơ còn dang dở.</p>
           <p>Và rồi một ngày, chúng ta nhận ra: điều quý nhất không phải là thời gian đã qua, mà là những người đã cùng mình đi qua thời gian ấy. Vì vậy, ngày hội ngộ này mới thật đáng chờ đợi.</p>
-        </div>`
+        </div>
+        <div class="prompt-box"><button class="prompt-btn" type="button" data-i="0" data-prompts="Nếu gặp lại nhau vào ngày 01/01/2027, điều đầu tiên bạn muốn nói với cả lớp là gì?|Một bài hát cũ nào khiến bạn nhớ về lớp học ngay lập tức?|Bạn muốn gặp lại ai nhất trong ngày hội ngộ này?">Xem Câu Hỏi Khác</button><p class="prompt-text">Nếu gặp lại nhau vào ngày 01/01/2027, điều đầu tiên bạn muốn nói với cả lớp là gì?</p></div>`
     },
     {
       html: `<h2 class="sec">Lời Mời</h2>
@@ -222,6 +245,8 @@
   const pageEl = $('page'), sheet = $('turnSheet'), sheetInner = $('turnInner');
   function render(){
     pageEl.innerHTML = pages[current].html;
+    pageEl.classList.remove('page-in'); void pageEl.offsetWidth; pageEl.classList.add('page-in');
+    $('progressBar').style.width = ((current + 1) / pages.length * 100) + '%';
     pageEl.classList.toggle('is-cover', !!pages[current].cover);
     $('pageInd').textContent = (current + 1) + ' / ' + pages.length;
     $('prevBtn').disabled = current === 0;
@@ -240,16 +265,16 @@
       setSheetFor(current);
       sheet.style.transition = 'none'; sheet.style.transform = 'rotateY(0deg)'; sheet.style.display = 'block';
       void sheet.offsetWidth;
-      sheet.style.transition = 'transform 1.4s cubic-bezier(.65,0,.35,1)'; sheet.style.transform = 'rotateY(-180deg)';
-      setTimeout(() => { current = index; render(); }, 700);
-      setTimeout(() => { sheet.style.display = 'none'; sheet.style.transform = 'rotateY(0deg)'; animating = false; }, 1450);
+      sheet.style.transition = 'transform 1.5s cubic-bezier(.22,1,.36,1)'; sheet.style.transform = 'rotateY(-180deg)';
+      setTimeout(() => { current = index; render(); }, 750);
+      setTimeout(() => { sheet.style.display = 'none'; sheet.style.transform = 'rotateY(0deg)'; animating = false; }, 1550);
     } else {
       // Tờ giấy của trang trước đi từ trái sang phải, phủ dần trang hiện tại rồi mới lộ trang trước.
       setSheetFor(index);
       sheet.style.transition = 'none'; sheet.style.transform = 'rotateY(-180deg)'; sheet.style.display = 'block';
       void sheet.offsetWidth;
-      sheet.style.transition = 'transform 1.4s cubic-bezier(.65,0,.35,1)'; sheet.style.transform = 'rotateY(0deg)';
-      setTimeout(() => { current = index; render(); sheet.style.display = 'none'; sheet.style.transform = 'rotateY(0deg)'; animating = false; }, 1450);
+      sheet.style.transition = 'transform 1.5s cubic-bezier(.22,1,.36,1)'; sheet.style.transform = 'rotateY(0deg)';
+      setTimeout(() => { current = index; render(); sheet.style.display = 'none'; sheet.style.transform = 'rotateY(0deg)'; animating = false; }, 1550);
     }
     if (!musicAutoStarted && index >= 1) { musicAutoStarted = true; startMusic(); }
   }
@@ -326,6 +351,15 @@
   $('musicBtn').addEventListener('click', () => { musicAutoStarted = true; musicOn ? stopMusic() : startMusic(); });
 
   document.addEventListener('click', e => {
+    const promptBtn = e.target.closest('.prompt-btn');
+    if (promptBtn) {
+      const prompts = promptBtn.dataset.prompts.split('|');
+      const next = (parseInt(promptBtn.dataset.i || '0', 10) + 1) % prompts.length;
+      promptBtn.dataset.i = next;
+      const text = promptBtn.parentElement.querySelector('.prompt-text');
+      if (text) text.textContent = prompts[next];
+      return;
+    }
     const act = e.target.closest('[data-action]');
     if (act && act.dataset.action === 'open-book') { goTo(1, true); return; }
     const rsvp = e.target.closest('[data-rsvp]');
