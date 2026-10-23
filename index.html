@@ -93,6 +93,14 @@
   .actions{display:flex;flex-direction:column;gap:12px;align-items:center;justify-content:center;margin-top:24px}
   .actions .btn{min-width:260px;justify-content:center}
   #rsvpMsg{margin-top:16px;font-weight:600;color:#1F6B3A;min-height:24px;text-align:center;text-wrap:balance}
+  .rsvp-modal{position:fixed;inset:0;background:rgba(10,20,40,.62);display:none;align-items:center;justify-content:center;z-index:100;padding:20px}
+  .rsvp-modal.open{display:flex}
+  .rsvp-card{background:#FFFEFA;border:1px solid rgba(197,160,89,.6);border-radius:20px;padding:28px 24px;max-width:360px;width:100%;box-shadow:0 30px 70px rgba(0,0,0,.5);text-align:left}
+  .rsvp-card h3{font-family:"Playfair Display",serif;font-size:24px;margin:0;text-align:center}
+  .rsvp-choice{text-align:center;color:var(--gold-dark);font-weight:700;margin:8px 0 4px}
+  .rsvp-card label{display:block;font-size:14px;font-weight:700;margin:14px 0 6px}
+  .rsvp-card input{width:100%;box-sizing:border-box;border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:16px;background:#fff;color:var(--ink)}
+  #rsvpError{margin:10px 0 0;font-size:14px;color:#B42318;min-height:20px;text-align:center}
 
   .book-nav{display:flex;align-items:center;justify-content:space-between;margin-top:16px}
   .navbtn{background:transparent;border:1px solid rgba(230,201,135,.5);border-radius:999px;color:#F0D48A;padding:11px 16px;cursor:pointer;display:inline-flex;align-items:center}
@@ -363,9 +371,46 @@
     if (act && act.dataset.action === 'open-book') { goTo(1, true); return; }
     const rsvp = e.target.closest('[data-rsvp]');
     if (rsvp) {
-      const msg = $('rsvpMsg');
-      if (msg) msg.textContent = 'Cảm ơn bạn đã xác nhận: ' + rsvp.dataset.rsvp + '. Hẹn gặp bạn vào ngày 01/01/2027.';
-      try { localStorage.setItem('rsvp-15-nam', rsvp.dataset.rsvp); } catch(err) {}
+      const modal = $('rsvpModal');
+      if (modal) { modal.dataset.choice = rsvp.dataset.rsvp; modal.classList.add('open'); }
+      const choiceEl = $('rsvpChoice'); if (choiceEl) choiceEl.textContent = 'Bạn xác nhận: ' + rsvp.dataset.rsvp;
+      const err = $('rsvpError'); if (err) err.textContent = '';
+      const nameEl = $('rsvpName'); if (nameEl) setTimeout(() => nameEl.focus(), 50);
+      return;
+    }
+    if (e.target.closest('#rsvpCancel') || e.target.id === 'rsvpModal') {
+      const modal = $('rsvpModal'); if (modal) modal.classList.remove('open');
+      return;
+    }
+    if (e.target.closest('#rsvpSend')) {
+      const modal = $('rsvpModal');
+      const nameEl = $('rsvpName'), phoneEl = $('rsvpPhone'), err = $('rsvpError'), msg = $('rsvpMsg');
+      const name = nameEl ? nameEl.value.trim() : '';
+      const phone = phoneEl ? phoneEl.value.replace(/\D/g, '') : '';
+      if (!name) { if (err) err.textContent = 'Bạn vui lòng nhập họ và tên trước khi gửi.'; if (nameEl) nameEl.focus(); return; }
+      if (!/^0\d{9}$/.test(phone)) { if (err) err.textContent = 'Số điện thoại cần đủ 10 số và bắt đầu bằng số 0.'; if (phoneEl) phoneEl.focus(); return; }
+      if (err) err.textContent = '';
+      // Điền khi có Form/Sheet: RSVP_ENDPOINT là địa chỉ formResponse của Google Form liên kết với Sheet mới,
+      // RSVP_FIELDS là 3 mã entry của 3 câu hỏi Họ và tên, Số điện thoại, Xác nhận. Chưa điền thì chưa gửi lên Sheet.
+      // Không mở trang biểu mẫu: chỉ gửi ngầm trong nền, người dùng ở lại trong quyển sách.
+      const RSVP_ENDPOINT = 'https://docs.google.com/forms/d/e/1FAIpQLSebNQLPKc1FsZSU4_S9bnA90uKVRlP3sB2icpHYwsGxvw9mQw/formResponse';
+      const RSVP_FIELDS = { name: 'entry.1478877037', phone: 'entry.496907100', choice: 'entry.165629815' };
+      const choice = modal ? modal.dataset.choice : '';
+      const done = () => {
+        if (modal) modal.classList.remove('open');
+        if (msg) msg.textContent = 'Cảm ơn ' + name + ' đã xác nhận: ' + choice + '. Hẹn gặp bạn vào ngày 01/01/2027.';
+        if (nameEl) nameEl.value = ''; if (phoneEl) phoneEl.value = '';
+        try { localStorage.setItem('rsvp-15-nam', choice); } catch(e2) {}
+      };
+      if (!RSVP_ENDPOINT || !RSVP_FIELDS.name || !RSVP_FIELDS.phone || !RSVP_FIELDS.choice) {
+        if (err) err.textContent = 'Form xác nhận đang chờ kết nối Google Sheet, chưa gửi được. Vui lòng quay lại sau.';
+        return;
+      }
+      const fd = new FormData();
+      fd.append(RSVP_FIELDS.name, name); fd.append(RSVP_FIELDS.phone, phone); fd.append(RSVP_FIELDS.choice, choice);
+      fetch(RSVP_ENDPOINT, { method: 'POST', mode: 'no-cors', body: fd })
+        .then(done)
+        .catch(() => { if (err) err.textContent = 'Gửi chưa thành công, bạn vui lòng bấm lại.'; });
     }
   });
 
@@ -385,5 +430,20 @@
 
   render(); tick();
 </script>
+<div class="rsvp-modal" id="rsvpModal" role="dialog" aria-modal="true" aria-labelledby="rsvpTitle">
+  <div class="rsvp-card">
+    <h3 id="rsvpTitle">Xác Nhận Tham Dự</h3>
+    <p class="rsvp-choice" id="rsvpChoice"></p>
+    <label for="rsvpName">Họ và tên</label>
+    <input id="rsvpName" type="text" autocomplete="name" placeholder="Nhập họ và tên của bạn">
+    <label for="rsvpPhone">Số điện thoại</label>
+    <input id="rsvpPhone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="Nhập số điện thoại 10 số">
+    <p id="rsvpError" role="alert"></p>
+    <div class="actions">
+      <button class="btn gold" type="button" id="rsvpSend">Gửi Xác Nhận</button>
+      <button class="btn light" type="button" id="rsvpCancel">Đóng</button>
+    </div>
+  </div>
+</div>
 </body>
 </html>
