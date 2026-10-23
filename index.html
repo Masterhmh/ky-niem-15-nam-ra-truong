@@ -61,6 +61,13 @@
   .prompt-btn{display:block;width:100%;background:transparent;border:0;color:var(--gold-dark);font-weight:700;cursor:pointer;font-size:15px;letter-spacing:.06em;padding:10px 6px}
   .prompt-text{margin:6px 0 0;font-size:14px;line-height:1.5;text-wrap:balance;color:var(--ink)}
   .prompt-count{display:block;margin-top:6px;font-size:12px;letter-spacing:.14em;color:var(--muted)}
+  .prompt-answers{display:flex;gap:10px;justify-content:center;margin-top:10px}
+  .ans-btn{flex:1;max-width:120px;padding:9px 6px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--navy);font-weight:700;cursor:pointer;font-size:14px}
+  .ans-btn.selected{background:var(--navy);color:#F0D48A;border-color:var(--navy)}
+  .prompt-answer-msg{margin:6px 0 0;font-size:13px;color:var(--gold-dark);font-weight:600;min-height:18px}
+  .confetti{position:fixed;inset:0;pointer-events:none;z-index:200;overflow:hidden}
+  .confetti i{position:absolute;top:-16px;width:9px;height:14px;animation:confetti-fall 3.2s ease-in forwards}
+  @keyframes confetti-fall{to{transform:translateY(105vh) rotate(720deg);opacity:.2}}
   .progress{height:3px;background:rgba(230,201,135,.25);border-radius:999px;margin-top:16px;overflow:hidden}
   .progress div{height:100%;background:linear-gradient(90deg,#8C6D2E,#E6C987);border-radius:999px;transition:width .6s ease}
   .dust{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:1;opacity:.35}
@@ -189,7 +196,7 @@
           <p>Giờ ra chơi, sân trường rộn ràng tiếng cười. Những câu chuyện chưa kể hết đã phải quay lại lớp, hẹn nhau kể tiếp vào giờ sau.</p>
           <p>Có những bài học khó, những lần kiểm tra hồi hộp, những lúc giận nhau rồi lại làm lành ngay trong ngày. Ngồi cạnh nhau, mọi thứ đều nhẹ nhàng hơn rất nhiều.</p>
         </div>
-        <div class="prompt-box"><button class="prompt-btn" type="button" data-i="0" data-prompts="Chỗ ngồi của bạn ở đâu — gần cửa sổ hay gần bảng?|Ai là người bạn cùng bàn mà bạn nhớ nhất?|Tiếng trống trường ngày ấy, bạn còn nhớ không?">Xem Câu Hỏi Khác</button><p class="prompt-text">Chỗ ngồi của bạn ở đâu — gần cửa sổ hay gần bảng?</p><span class="prompt-count">Câu hỏi 1 / 3</span></div>`
+        <div class="prompt-box"><button class="prompt-btn" type="button" data-i="0" data-prompts="Chỗ ngồi của bạn ở đâu — gần cửa sổ hay gần bảng?|Ai là người bạn cùng bàn mà bạn nhớ nhất?|Tiếng trống trường ngày ấy, bạn còn nhớ không?">Xem Câu Hỏi Khác</button><p class="prompt-text">Chỗ ngồi của bạn ở đâu — gần cửa sổ hay gần bảng?</p><span class="prompt-count">Câu hỏi 1 / 3</span><div class="prompt-answers"><button class="ans-btn" type="button" data-ans="Có">Có</button><button class="ans-btn" type="button" data-ans="Không">Không</button></div><p class="prompt-answer-msg"></p></div>`
     },
     {
       html: `<div class="chapter">Chương 2</div>
@@ -200,7 +207,7 @@
           <p>Ngày chia tay, không ai nói được nhiều. Chỉ một cái ôm, một lời hẹn gặp lại, và một nỗi buồn lặng lẽ mà mãi sau này mới hiểu hết.</p>
           <p>Mỗi người mang theo một ước mơ, rời khỏi mái trường, mang theo cả một phần tuổi trẻ của nhau. Và từ đó, chúng ta bắt đầu một hành trình dài mang tên trưởng thành.</p>
         </div>
-        <div class="prompt-box"><button class="prompt-btn" type="button" data-i="0" data-prompts="Ngày chia tay ấy, bạn đã nói gì với người bạn thân nhất?|Có điều gì đến giờ bạn vẫn chưa kịp nói không?|Mùa hè năm ấy, bạn mang theo ước mơ gì?">Xem Câu Hỏi Khác</button><p class="prompt-text">Ngày chia tay ấy, bạn đã nói gì với người bạn thân nhất?</p><span class="prompt-count">Câu hỏi 1 / 3</span></div>`
+        <div class="prompt-box"><button class="prompt-btn" type="button" data-i="0" data-prompts="Ngày chia tay ấy, bạn đã nói gì với người bạn thân nhất?|Có điều gì đến giờ bạn vẫn chưa kịp nói không?|Mùa hè năm ấy, bạn mang theo ước mơ gì?">Xem Câu Hỏi Khác</button><p class="prompt-text">Ngày chia tay ấy, bạn đã nói gì với người bạn thân nhất?</p><span class="prompt-count">Câu hỏi 1 / 3</span><div class="prompt-answers"><button class="ans-btn" type="button" data-ans="Có">Có</button><button class="ans-btn" type="button" data-ans="Không">Không</button></div><p class="prompt-answer-msg"></p></div>`
     },
     {
       html: `<div class="chapter">Chương 3</div>
@@ -211,7 +218,7 @@
           <p>Có những người bạn lâu rồi chưa gặp, có những cái tên chỉ cần nhắc đến là cả một thời học trò ùa về, với tiếng cười và những ước mơ còn dang dở.</p>
           <p>Và rồi một ngày, chúng ta nhận ra: điều quý nhất không phải là thời gian đã qua, mà là những người đã cùng mình đi qua thời gian ấy. Vì vậy, ngày hội ngộ này mới thật đáng chờ đợi.</p>
         </div>
-        <div class="prompt-box"><button class="prompt-btn" type="button" data-i="0" data-prompts="Nếu gặp lại nhau vào ngày 01/01/2027, điều đầu tiên bạn muốn nói với cả lớp là gì?|Một bài hát cũ nào khiến bạn nhớ về lớp học ngay lập tức?|Bạn muốn gặp lại ai nhất trong ngày hội ngộ này?">Xem Câu Hỏi Khác</button><p class="prompt-text">Nếu gặp lại nhau vào ngày 01/01/2027, điều đầu tiên bạn muốn nói với cả lớp là gì?</p><span class="prompt-count">Câu hỏi 1 / 3</span></div>`
+        <div class="prompt-box"><button class="prompt-btn" type="button" data-i="0" data-prompts="Nếu gặp lại nhau vào ngày 01/01/2027, điều đầu tiên bạn muốn nói với cả lớp là gì?|Một bài hát cũ nào khiến bạn nhớ về lớp học ngay lập tức?|Bạn muốn gặp lại ai nhất trong ngày hội ngộ này?">Xem Câu Hỏi Khác</button><p class="prompt-text">Nếu gặp lại nhau vào ngày 01/01/2027, điều đầu tiên bạn muốn nói với cả lớp là gì?</p><span class="prompt-count">Câu hỏi 1 / 3</span><div class="prompt-answers"><button class="ans-btn" type="button" data-ans="Có">Có</button><button class="ans-btn" type="button" data-ans="Không">Không</button></div><p class="prompt-answer-msg"></p></div>`
     },
     {
       html: `<h2 class="sec">Lời Mời</h2>
@@ -222,13 +229,6 @@
         <div class="detail"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div class="detail-text"><span class="d1"><strong>9 Giờ 00</strong></span><span class="d2">Thứ Sáu, Ngày 01/01/2027</span></div></div>
         <div class="detail"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21c-4-4.5-7-7.8-7-11a7 7 0 0 1 14 0c0 3.2-3 6.5-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><div class="detail-text"><span class="d1"><strong>Trường THPT Số 1</strong></span><span class="d2">Mường Khương</span></div></div>
         <div class="detail"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1 4 2 6 2s6-1 6-2v-5"/><path d="M22 10v5"/></svg><div class="detail-text"><span class="d1"><strong>Lớp 12A1 — 2012 — 2027</strong></span></div></div>
-        <p class="count-label">Đếm Ngược Tới Ngày Hội Ngộ</p>
-        <div class="count" aria-live="off">
-          <div><b id="d">—</b><span>Ngày</span></div>
-          <div><b id="h">—</b><span>Giờ</span></div>
-          <div><b id="m">—</b><span>Phút</span></div>
-          <div><b id="s">—</b><span>Giây</span></div>
-        </div>
         <p class="center foot-note" style="margin-top:26px">Sự hiện diện của bạn là<br>món quà ý nghĩa nhất<br>cho ngày hội ngộ này.</p>`
     },
     {
@@ -251,6 +251,13 @@
           <button class="btn light" type="button" data-rsvp="Tôi không tham dự được">Tôi Không Tham Dự Được</button>
         </div>
         <p id="rsvpMsg" role="status"></p>
+        <p class="count-label">Đếm Ngược Tới Ngày Hội Ngộ</p>
+        <div class="count" aria-live="off">
+          <div><b id="d">—</b><span>Ngày</span></div>
+          <div><b id="h">—</b><span>Giờ</span></div>
+          <div><b id="m">—</b><span>Phút</span></div>
+          <div><b id="s">—</b><span>Giây</span></div>
+        </div>
         <p class="foot-note" style="margin-top:26px">Lớp 12A1<br>9 Giờ 00 — Thứ Sáu<br>Ngày 01/01/2027<br>Trường THPT Số 1 Mường Khương</p>
       </div>`
     }
@@ -361,7 +368,33 @@
   }
   $('musicBtn').addEventListener('click', () => { musicAutoStarted = true; musicOn ? stopMusic() : startMusic(); });
 
+  function celebrate(){
+    const layer = document.createElement('div');
+    layer.className = 'confetti';
+    const colors = ['#C5A059','#E6C987','#0E1B33','#FFFDF8','#8C6D2E'];
+    for (let i = 0; i < 80; i++) {
+      const piece = document.createElement('i');
+      piece.style.left = Math.random() * 100 + '%';
+      piece.style.background = colors[i % colors.length];
+      piece.style.animationDelay = (Math.random() * 0.8) + 's';
+      piece.style.transform = 'rotate(' + Math.floor(Math.random() * 180) + 'deg)';
+      layer.appendChild(piece);
+    }
+    document.body.appendChild(layer);
+    setTimeout(() => layer.remove(), 4200);
+  }
   document.addEventListener('click', e => {
+    const ansBtn = e.target.closest('.ans-btn');
+    if (ansBtn) {
+      const box = ansBtn.closest('.prompt-box');
+      if (box) {
+        box.querySelectorAll('.ans-btn').forEach(b => b.classList.remove('selected'));
+        ansBtn.classList.add('selected');
+        const ansMsg = box.querySelector('.prompt-answer-msg');
+        if (ansMsg) ansMsg.textContent = ansBtn.dataset.ans === 'Có' ? 'Tuyệt vời: Bạn đã chọn Có.' : 'Bạn đã chọn Không.';
+      }
+      return;
+    }
     const promptBox = e.target.closest('.prompt-box');
     if (promptBox) {
       const promptBtn = promptBox.querySelector('.prompt-btn');
@@ -372,6 +405,9 @@
       if (text) text.textContent = prompts[next];
       const count = promptBox.querySelector('.prompt-count');
       if (count) count.textContent = 'Câu hỏi ' + (next + 1) + ' / ' + prompts.length;
+      promptBox.querySelectorAll('.ans-btn').forEach(b => b.classList.remove('selected'));
+      const ansMsg2 = promptBox.querySelector('.prompt-answer-msg');
+      if (ansMsg2) ansMsg2.textContent = '';
       return;
     }
     const act = e.target.closest('[data-action]');
@@ -405,7 +441,14 @@
       const choice = modal ? modal.dataset.choice : '';
       const done = () => {
         if (modal) modal.classList.remove('open');
-        if (msg) msg.textContent = 'Cảm ơn ' + name + ' đã xác nhận: ' + choice + '. Hẹn gặp bạn vào ngày 01/01/2027.';
+        if (msg) {
+          if (choice === 'Tôi sẽ tham dự') {
+            msg.textContent = 'Chúc mừng ' + name + '! Hẹn gặp bạn vào 9 giờ 00, Thứ Sáu, ngày 01/01/2027 tại Trường THPT Số 1 Mường Khương, Lớp 12A1!';
+            celebrate();
+          } else {
+            msg.textContent = 'Cảm ơn ' + name + ' đã xác nhận: ' + choice + '. Hẹn gặp bạn vào ngày 01/01/2027.';
+          }
+        }
         if (nameEl) nameEl.value = ''; if (phoneEl) phoneEl.value = '';
         try { localStorage.setItem('rsvp-15-nam', choice); } catch(e2) {}
       };
