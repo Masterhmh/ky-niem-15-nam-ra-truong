@@ -98,6 +98,7 @@
   .timeline h4{margin:0;font-size:18px;text-wrap:balance}
   .timeline p{margin:4px 0 0;color:var(--muted)}
   .center{text-align:center}
+  .invite-page{display:flex;flex-direction:column;justify-content:center;min-height:100%}
   .actions{display:flex;flex-direction:column;gap:12px;align-items:center;justify-content:center;margin-top:24px}
   .actions .btn{min-width:260px;justify-content:center}
   #rsvpMsg{margin-top:16px;font-weight:600;color:#1F6B3A;min-height:24px;text-align:center;text-wrap:balance}
@@ -221,7 +222,7 @@
         <div class="prompt-box"><button class="prompt-btn" type="button" data-i="0" data-prompts="Nếu gặp lại nhau vào ngày 01/01/2027, bạn có muốn nói một điều với cả lớp không?|Có bài hát cũ nào khiến bạn nhớ về lớp học ngay lập tức không?|Bạn có muốn gặp lại người bạn cũ nhất trong ngày hội ngộ này không?">Xem Câu Hỏi Khác</button><p class="prompt-text">Nếu gặp lại nhau vào ngày 01/01/2027, bạn có muốn nói một điều với cả lớp không?</p><span class="prompt-count">Câu hỏi 1 / 3</span><div class="prompt-answers"><button class="ans-btn" type="button" data-ans="Có">Có</button><button class="ans-btn" type="button" data-ans="Không">Không</button></div><p class="prompt-answer-msg"></p></div>`
     },
     {
-      html: `<h2 class="sec">Lời Mời</h2>
+      html: `<div class="invite-page"><h2 class="sec">Lời Mời</h2>
         <div class="ornament"><span>◆</span></div>
         <div class="letter">
           <p>Nhân dịp kỷ niệm 15 năm ngày ra trường, Lớp 12A1 trân trọng kính mời các bạn trở về mái trường xưa, gặp lại thầy cô và bạn bè, cùng nhau ôn lại những câu chuyện cũ và viết tiếp một kỷ niệm mới.</p>
@@ -229,7 +230,8 @@
         <div class="detail"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div class="detail-text"><span class="d1"><strong>9 Giờ 00</strong></span><span class="d2">Thứ Sáu, Ngày 01/01/2027</span></div></div>
         <div class="detail"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21c-4-4.5-7-7.8-7-11a7 7 0 0 1 14 0c0 3.2-3 6.5-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><div class="detail-text"><span class="d1"><strong>Trường THPT Số 1</strong></span><span class="d2">Mường Khương</span></div></div>
         <div class="detail"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1 4 2 6 2s6-1 6-2v-5"/><path d="M22 10v5"/></svg><div class="detail-text"><span class="d1"><strong>Lớp 12A1 — 2012 — 2027</strong></span></div></div>
-        <p class="center foot-note" style="margin-top:26px">Sự hiện diện của bạn là<br>món quà ý nghĩa nhất<br>cho ngày hội ngộ này.</p>`
+        <div class="ornament"><span>◆</span></div>
+        <p class="serif quote center">“Sự hiện diện của bạn là<br>món quà ý nghĩa nhất<br>cho ngày hội ngộ này.”</p></div>`
     },
     {
       html: `<h2 class="sec">Hành Trình 15 Năm</h2>
