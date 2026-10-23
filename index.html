@@ -370,6 +370,25 @@
   }
   $('musicBtn').addEventListener('click', () => { musicAutoStarted = true; musicOn ? stopMusic() : startMusic(); });
 
+  // Mở trang lên là thử chạy nhạc luôn; trình duyệt thường chặn phát có tiếng khi chưa có thao tác,
+  // nên nếu lần thử đầu bị chặn thì nhạc sẽ tự bắt đầu ở thao tác chạm/bấm/phím đầu tiên trên trang,
+  // không cần chờ tới khi mở sách. Bấm nút nhạc thì không tính là thao tác tự bắt đầu này.
+  function attemptAutoplay(){
+    const audio = $('bgAudio');
+    if (!audio || musicOn) return;
+    audio.volume = 0.5;
+    const played = audio.play();
+    if (played && played.then) {
+      played.then(() => { musicOn = true; musicAutoStarted = true; setMusicLabel(); }).catch(() => {});
+    } else { musicOn = true; musicAutoStarted = true; setMusicLabel(); }
+  }
+  document.addEventListener('pointerdown', e => {
+    if (e.target.closest('#musicBtn')) return;
+    if (!musicOn) { musicAutoStarted = true; startMusic(); }
+  }, { once: true, passive: true });
+  document.addEventListener('keydown', () => { if (!musicOn) { musicAutoStarted = true; startMusic(); } }, { once: true });
+  attemptAutoplay();
+
   function celebrate(){
     const layer = document.createElement('div');
     layer.className = 'confetti';
