@@ -54,8 +54,7 @@
   .btn.gold:after{content:"";position:absolute;top:0;left:-70%;width:45%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);transition:left .6s ease}
   .btn.gold:hover:after{left:130%}
   .btn.light{background:#fff;color:var(--navy);border:1px solid var(--line)}
-  @keyframes pageIn{from{opacity:.35}to{opacity:1}}
-  .page-in{animation:pageIn .6s ease}
+  .page-fit{transition:transform .35s ease}
   .chapter{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-dark);font-weight:600;text-align:center;margin:0 0 6px}
   .prompt-box{margin-top:14px;border:1px solid var(--line);border-radius:14px;padding:10px 14px;background:rgba(197,160,89,.08);text-align:center;cursor:pointer}
   .prompt-btn{display:block;width:100%;background:transparent;border:0;color:var(--gold-dark);font-weight:700;cursor:pointer;font-size:15px;letter-spacing:.06em;padding:10px 6px}
@@ -357,7 +356,6 @@
   function render(){
     pageEl.innerHTML = '<div class="page-fit">' + pages[current].html + '</div>';
     restorePromptState(pageEl); fitInner(pageEl);
-    pageEl.classList.remove('page-in'); void pageEl.offsetWidth; pageEl.classList.add('page-in');
     $('progressBar').style.width = ((current + 1) / pages.length * 100) + '%';
     pageEl.classList.toggle('is-cover', !!pages[current].cover);
     $('pageInd').textContent = (current + 1) + ' / ' + pages.length;
@@ -374,12 +372,13 @@
     const dir = index > current ? 'next' : 'prev';
     animating = true;
     if (dir === 'next') {
-      // Tờ giấy hiện tại xoay từ từ sang trái, trang mới lộ ra ở dưới khi tờ giấy gần dựng đứng.
-      setSheetFor(current);
+      // Trang mới được vẽ sẵn ở dưới tờ giấy trước khi xoay, để tờ giấy xoay qua 90 độ là lộ ngay trang mới, không đổi nội dung giữa chừng.
+      const oldIndex = current;
+      setSheetFor(oldIndex);
+      current = index; render();
       sheet.style.transition = 'none'; sheet.style.transform = 'rotateY(0deg)'; sheet.style.display = 'block';
       void sheet.offsetWidth;
       sheet.style.transition = 'transform 1.5s cubic-bezier(.22,1,.36,1)'; sheet.style.transform = 'rotateY(-180deg)';
-      setTimeout(() => { current = index; render(); }, 750);
       setTimeout(() => { sheet.style.display = 'none'; sheet.style.transform = 'rotateY(0deg)'; animating = false; }, 1550);
     } else {
       // Tờ giấy của trang trước đi từ trái sang phải, phủ dần trang hiện tại rồi mới lộ trang trước.
